@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduationinterface/draweradmin.dart';
 import 'package:graduationinterface/adminhome.dart';
 
+//admin view and manage user's feedbacks
 class FeedbackAnalysisPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,8 @@ class FeedbackAnalysisPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AdminDashboardPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AdminDashboardPage()));
           },
         ),
       ),
@@ -32,7 +34,7 @@ class FeedbackAnalysisPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/assets/last.png'), 
+                image: AssetImage('images/assets/last.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -57,14 +59,14 @@ class FeedbackAnalysisPage extends StatelessWidget {
                     height: 200.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('images/assets/lovee.png'), // Replace with your admin photo asset
+                        image: AssetImage(
+                            'images/assets/lovee.png'), // Replace with your admin photo asset
                         fit: BoxFit.fitHeight,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   SizedBox(height: 24.0),
-
                   Card(
                     elevation: 5.0,
                     child: Padding(
@@ -77,7 +79,7 @@ class FeedbackAnalysisPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF3B52BB), 
+                              color: Color(0xFF3B52BB),
                             ),
                           ),
                           SizedBox(height: 12.0),
@@ -87,13 +89,11 @@ class FeedbackAnalysisPage extends StatelessWidget {
                           ListTile(
                             title: Text('User Comment 2'),
                           ),
-                         
                         ],
                       ),
                     ),
                   ),
                   SizedBox(height: 16.0),
-
                   Card(
                     elevation: 5.0,
                     child: Padding(
@@ -106,16 +106,15 @@ class FeedbackAnalysisPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF3B52BB), 
+                              color: Color(0xFF3B52BB),
                             ),
                           ),
                           SizedBox(height: 12.0),
                           Image.asset(
-                            'images/assets/FOUR.png', 
+                            'images/assets/FOUR.png',
                             height: 200.0,
                             fit: BoxFit.cover,
                           ),
-                          
                         ],
                       ),
                     ),

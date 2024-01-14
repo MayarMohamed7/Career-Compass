@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/chat.dart';
-import 'package:graduationinterface/signup.dart';
+import 'package:graduationinterface/chat.dart';  //import chat page
+import 'package:graduationinterface/signup.dart';  //import signup page
 
+//loginpageUI
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
+//stateful widget
 class LoginForm extends StatefulWidget {
   @override
   _LoginFormState createState() => _LoginFormState();

@@ -17,8 +17,8 @@ class LoginPage extends StatelessWidget {
               height: 140,
             ),
           ],
-        ),
-      ),
+        ), 
+      ),  //appbar
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-//stateful widget
+///stateful widget
 class LoginForm extends StatefulWidget {
   @override
   _LoginFormState createState() => _LoginFormState();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/creatingacc.dart';
+import 'package:graduationinterface/creatingacc.dart'; //import creatingacc page
 
+
+//create signup statless widget 
 class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

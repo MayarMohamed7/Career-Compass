@@ -214,8 +214,11 @@ class AnalyticsPhoto extends StatelessWidget {
       elevation: 3.0,
       child: Image.asset(
         imagePath,
+        
         fit: BoxFit.cover,
       ),
     );
   }
 }
+
+

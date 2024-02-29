@@ -6,6 +6,7 @@ class ChatbotInteractionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -15,8 +16,6 @@ class ChatbotInteractionPage extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255), 
-        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

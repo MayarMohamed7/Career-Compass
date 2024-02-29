@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/Optional.dart';
 //import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/intro.dart';
 //import 'package:graduationinterface/profile.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:  IntroPage(),
+      home:  OptionalPage(),
       debugShowCheckedModeBanner: 
       false,
     );

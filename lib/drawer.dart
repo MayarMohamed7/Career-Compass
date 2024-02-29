@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/intro.dart';
 import 'package:graduationinterface/profile.dart';
 
@@ -28,7 +29,10 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.edit_note, color: Color.fromARGB(255, 0, 0, 0)),
               title: Text('New Chat', style: TextStyle(color:Color.fromARGB(255, 0, 0, 0))),
               onTap: () {
-                Navigator.pop(context);
+               Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChatbotInteractionPage()),
+                    );
               },
             ),
             ListTile(

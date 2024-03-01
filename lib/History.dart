@@ -27,32 +27,32 @@ class ChatHistoryPage extends StatelessWidget {
       endDrawer: AppDrawer(),
       body: ListView(
         children: [
-          ChatHistoryItem(
+          ChatHistoryCard(
             title: "Resume Review",
             message: "Your resume looks great! Let's discuss job opportunities.",
             time: "Yesterday",
           ),
-          ChatHistoryItem(
+          ChatHistoryCard(
             title: "Interview Preparation",
             message: "I've prepared some interview questions for you. Let's practice.",
             time: "2 days ago",
           ),
-          ChatHistoryItem(
+          ChatHistoryCard(
             title: "Career Advice",
             message: "I have some tips on advancing in your career. Let's chat.",
             time: "5 days ago",
           ),
-          ChatHistoryItem(
+          ChatHistoryCard(
             title: "Job Search Strategies",
             message: "Let's strategize on finding the perfect job for you!",
             time: "1 week ago",
           ),
-          ChatHistoryItem(
+          ChatHistoryCard(
             title: "Salary Negotiation",
             message: "I can help you negotiate a better salary offer. Let's get started.",
             time: "2 weeks ago",
           ),
-          ChatHistoryItem(
+          ChatHistoryCard(
             title: "Skill Development",
             message: "We can work on developing new skills to boost your career.",
             time: "3 weeks ago",
@@ -60,18 +60,17 @@ class ChatHistoryPage extends StatelessWidget {
           // Add more chat history items here
         ],
       ),
-            bottomNavigationBar: Footer(),
-
+      bottomNavigationBar: Footer(),
     );
   }
 }
 
-class ChatHistoryItem extends StatelessWidget {
+class ChatHistoryCard extends StatelessWidget {
   final String title;
   final String message;
   final String time;
 
-  const ChatHistoryItem({
+  const ChatHistoryCard({
     Key? key,
     required this.title,
     required this.message,
@@ -80,31 +79,33 @@ class ChatHistoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      
-      title: Text(
-        title,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
+    return Card(
+      margin: EdgeInsets.all(10),
+      child: ListTile(
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
-      ),
-      subtitle: Text(
-        message,
-        style: TextStyle(
-          fontSize: 16,
+        subtitle: Text(
+          message,
+          style: TextStyle(
+            fontSize: 16,
+          ),
         ),
-      ),
-      trailing: Text(
-        time,
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 14,
+        trailing: Text(
+          time,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 14,
+          ),
         ),
+        onTap: () {
+          // Handle tapping on a chat item
+        },
       ),
-      onTap: () {
-        // Handle tapping on a chat item
-      },
     );
   }
 }

@@ -104,15 +104,23 @@ class CreatingAcc extends StatelessWidget {
               SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionsPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionsPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 40),
+                  primary: Color(0xFF3B52BB), // Background color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Text(
+                    'Create Account',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

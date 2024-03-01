@@ -45,7 +45,7 @@ class _MySkillsPageState extends State<MySkillsPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/assets/boo.png'),
+                image: AssetImage('images/assets/ew3a.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -62,7 +62,7 @@ class _MySkillsPageState extends State<MySkillsPage> {
                     children: [
                       Text(
                         'My Skills',
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white,fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                       ElevatedButton(
                         onPressed: () {

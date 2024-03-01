@@ -46,7 +46,7 @@ class _SkillsPageState extends State<SkillsPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/assets/signn.png'),
+                image: AssetImage('images/assets/ew3a.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -97,7 +97,7 @@ class _SkillsPageState extends State<SkillsPage> {
                             hintText: 'Enter your skill',
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0)),
                             filled: true,
-                            fillColor: Colors.grey[200],
+                            fillColor: const Color.fromARGB(255, 255, 255, 255),
                             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
                           ),
                         ),

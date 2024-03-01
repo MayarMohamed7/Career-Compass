@@ -37,7 +37,6 @@ class SignupPage extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: SignupForm(),
@@ -90,21 +89,26 @@ class _SignupFormState extends State<SignupForm> {
           obscureText: true,
           decoration: InputDecoration(labelText: 'Confirm Password'),
         ),
-                SizedBox(height: 20.0),
-
+        SizedBox(height: 20.0),
         ElevatedButton(
           onPressed: () {
-  
-           Navigator.push(context, MaterialPageRoute(builder: (context) => CreatingAcc()));
-        
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CreatingAcc()));
           },
           style: ElevatedButton.styleFrom(
-            minimumSize: Size(100, 40),
+            primary: Color(0xFF3B52BB), // Background color
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
           ),
-          child: Text(
-            'Signup',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              'Signup',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduationinterface/Skills.dart';
 import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/drawer.dart';
+import 'package:graduationinterface/footer.dart';
 
 
 class OptionalPage extends StatelessWidget {
@@ -72,6 +73,7 @@ class OptionalPage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/Optional.dart';
 import 'package:graduationinterface/drawer.dart';
+import 'package:graduationinterface/footer.dart';
 
 class SkillsPage extends StatefulWidget {
   @override
@@ -238,6 +239,7 @@ class _SkillsPageState extends State<SkillsPage> {
           ),
         ],
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

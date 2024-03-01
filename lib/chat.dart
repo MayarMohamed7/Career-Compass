@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/drawer.dart';
+import 'package:graduationinterface/footer.dart';
 
 class ChatbotInteractionPage extends StatelessWidget {
   @override
@@ -22,6 +23,8 @@ class ChatbotInteractionPage extends StatelessWidget {
         child: ChatbotInterface(),
       ),
        endDrawer: AppDrawer(),
+             bottomNavigationBar: Footer(),
+
     );
   }
 }

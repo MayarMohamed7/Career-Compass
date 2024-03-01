@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/MySkills.dart';
 import 'package:graduationinterface/Optional.dart';
 import 'package:graduationinterface/drawer.dart';
 import 'package:graduationinterface/footer.dart';
@@ -197,12 +198,12 @@ class _SkillsPageState extends State<SkillsPage> {
                                   ),
                                   child: TextButton(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => OptionalPage()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => MySkillsPage()));
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Adjust padding here
                                       child: Text(
-                                        'Go to Home Page',
+                                        'Go to skills page',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/Skills.dart';
 import 'package:graduationinterface/drawer.dart';
+import 'package:graduationinterface/footer.dart';
 
 class MySkillsPage extends StatefulWidget {
   @override
@@ -134,6 +135,7 @@ class _MySkillsPageState extends State<MySkillsPage> {
           ),
         ],
       ),
+            bottomNavigationBar: Footer(),
     );
   }
 }

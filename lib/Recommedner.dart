@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/drawer.dart';
+import 'package:graduationinterface/footer.dart';
 
 class RecommenderPage extends StatelessWidget {
   final List<String> jobTitles = [
@@ -56,6 +57,8 @@ class RecommenderPage extends StatelessWidget {
           ),
         ],
       ),
+            bottomNavigationBar: Footer(),
+
     );
   }
 

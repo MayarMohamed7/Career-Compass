@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/drawer.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ProfilePage(),
-    );
-  }
-}
+import 'package:graduationinterface/footer.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+      
         title: Center(
           child: Image.asset(
             'images/assets/NiceJob.png',
@@ -60,6 +52,8 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
+            bottomNavigationBar: Footer(),
+
     );
   }
 }
@@ -69,7 +63,7 @@ class ProfileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 16.0),
+        SizedBox(height: 10.0),
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -81,14 +75,7 @@ class ProfileContent extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(100),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3),
-              ),
-            ],
+            
           ),
           child: CircleAvatar(
             radius: 50,
@@ -102,16 +89,16 @@ class ProfileContent extends StatelessWidget {
           },
           icon: Icon(
             Icons.edit,
-            color: Colors.white,
+            color: Colors.black,
           ),
           label: Text(
             'Edit Profile Picture',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ),
-        SizedBox(height: 16.0),
+        SizedBox(height: 10.0),
         ProfileItem("Name", Icons.person, () {
           // Add functionality to edit name
         }),

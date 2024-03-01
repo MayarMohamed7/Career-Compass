@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/drawer.dart';
+import 'package:graduationinterface/footer.dart';
 
 class ChatHistoryPage extends StatelessWidget {
   @override
@@ -59,6 +60,8 @@ class ChatHistoryPage extends StatelessWidget {
           // Add more chat history items here
         ],
       ),
+            bottomNavigationBar: Footer(),
+
     );
   }
 }

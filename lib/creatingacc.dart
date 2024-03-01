@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/questions.dart';
 
 class CreatingAcc extends StatelessWidget {
   @override
@@ -103,7 +104,7 @@ class CreatingAcc extends StatelessWidget {
               SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () {
-                  // Implement create account logic here
+            Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionsPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(100, 40),

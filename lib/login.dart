@@ -89,21 +89,21 @@ class _LoginFormState extends State<LoginForm> {
             );
           },
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF3B52BB), // Same color as the save button
+            primary: Color(0xFF3B52BB), 
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25.0),
             ),
-            minimumSize: Size(10, 10), // Set width and height to 10
+            minimumSize: Size(10, 10), 
           ),
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 8.0), // Adjust vertical padding here
+            padding: EdgeInsets.symmetric(vertical: 8.0), 
             child: Center(
               child: Text(
                 'Login',
                 style: TextStyle(
-                  fontSize: 16, // Adjust font size here
+                  fontSize: 16, 
                   fontWeight: FontWeight.bold,
-                  color: Colors.white, // Same color as the save button
+                  color: Colors.white, 
                 ),
               ),
             ),

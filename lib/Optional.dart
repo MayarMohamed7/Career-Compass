@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/Skills.dart';
 import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/drawer.dart';
 
@@ -56,7 +57,7 @@ class OptionalPage extends StatelessWidget {
                 'Skills Entry',
                 buttonHeight,
                 buttonWidth,
-                () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChatbotInteractionPage())), // Navigate to Skills Page
+                () => Navigator.push(context, MaterialPageRoute(builder: (context) => SkillsPage())), // Navigate to Skills Page
               ),
               SizedBox(height: 10),
               buttonWithImageAndText(

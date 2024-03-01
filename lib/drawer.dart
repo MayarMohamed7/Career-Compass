@@ -26,8 +26,8 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.edit_note, color: Color.fromARGB(255, 0, 0, 0)),
-              title: Text('New Chat', style: TextStyle(color:Color.fromARGB(255, 0, 0, 0))),
+              leading: Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)),
+              title: Text('New Chat', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                Navigator.push(
                       context,
@@ -36,15 +36,15 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.history, color: Color.fromARGB(255, 0, 0, 0)),
-              title: Text('History', style: TextStyle(color:Color.fromARGB(255, 0, 0, 0))),
+              leading: Icon(Icons.history_edu, color: Color.fromARGB(255, 140, 22, 183)),
+              title: Text('History', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_circle, color: Color.fromARGB(255, 0, 0, 0)),
-              title: Text('Account', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading: Icon(Icons.account_box, color: Color.fromARGB(255, 140, 22, 183)),
+              title: Text('Account', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                Navigator.push(
                       context,
@@ -53,8 +53,8 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.exit_to_app, color:Color.fromARGB(255, 0, 0, 0)),
-              title: Text('Sign Out', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading: Icon(Icons.exit_to_app, color:Color.fromARGB(255, 140, 22, 183)),
+              title: Text('Sign Out', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.pushReplacement(
                   context,

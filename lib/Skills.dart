@@ -217,7 +217,7 @@ class _SkillsPageState extends State<SkillsPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 119, 136, 235),
+                      primary:Color(0xFF3B52BB),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),

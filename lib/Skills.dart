@@ -56,7 +56,7 @@ class _SkillsPageState extends State<SkillsPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Align(
-                    alignment: Alignment.topCenter,
+                    alignment: Alignment.center,
                     child: Text(
                       'Your Skills',
                       style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

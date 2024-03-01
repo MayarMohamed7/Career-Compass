@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/Recommedner.dart';
 import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/intro.dart';
 import 'package:graduationinterface/profile.dart';
@@ -60,6 +61,16 @@ class AppDrawer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MySkillsPage()), // Navigate to MySkillsPage
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.auto_awesome, color: Color.fromARGB(255, 140, 22, 183)), // Add an appropriate icon for Recommender
+              title: Text('Recommender', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RecommenderPage()), // Navigate to the RecommenderPage
                 );
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/MySkills.dart';
 import 'package:graduationinterface/Skills.dart';
 import 'package:graduationinterface/intro.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:  IntroPage(),
+      home:  MySkillsPage(),
       debugShowCheckedModeBanner: 
       false,
     );

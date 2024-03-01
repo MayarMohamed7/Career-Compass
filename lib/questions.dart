@@ -9,16 +9,16 @@ class QuestionsPage extends StatefulWidget {
 class _QuestionsPageState extends State<QuestionsPage> {
   int _questionIndex = 0;
   List<String> _questions = [
-    'How do you feel about your current job?',
-    'How do you rate your web development skills?',
-    'What is your proficiency in data analysis?',
-    'How comfortable are you with digital marketing?',
+    'Are you satisfied with your current job?',
+    'Would you consider yourself proficient in web development?',
+    'Do you have experience in data analysis?',
+    'Are you comfortable with digital marketing?',
   ];
   List<List<String>> _options = [
-    ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree'],
-    ['Beginner', 'Intermediate', 'Advanced'],
-    ['Novice', 'Proficient', 'Expert'],
-    ['Not Familiar', 'Familiar', 'Very Familiar'],
+    ['Yes', 'No'],
+    ['Yes', 'No'],
+    ['Yes', 'No'],
+    ['Yes', 'No'],
   ];
 
   void _nextQuestion() {

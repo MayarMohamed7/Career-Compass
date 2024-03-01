@@ -26,7 +26,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
       if (_questionIndex < _questions.length - 1) {
         _questionIndex++;
       } else {
-      
         Navigator.push(context, MaterialPageRoute(builder: (context) => OptionalPage()));
       }
     });
@@ -41,8 +40,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
   }
 
   void _answerQuestion(String option) {
-    // Handle the answer tap
-    // For now, just navigate to the next question
     _nextQuestion();
   }
 
@@ -60,7 +57,13 @@ class _QuestionsPageState extends State<QuestionsPage> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/assets/ew3a.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +73,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -145,7 +148,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: Text(
                       'GO!',
-                    
                       style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),

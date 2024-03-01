@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/History.dart';
 import 'package:graduationinterface/Recommedner.dart';
 import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/intro.dart';
@@ -41,7 +42,10 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.history_edu, color: Color.fromARGB(255, 140, 22, 183)),
               title: Text('History', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatHistoryPage()),
+                );
               },
             ),
             ListTile(

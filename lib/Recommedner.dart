@@ -15,7 +15,6 @@ class RecommenderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -93,7 +92,7 @@ class RecommenderPage extends StatelessWidget {
             child: Text(
               "Read more about the job",
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 16,
                 decoration: TextDecoration.underline,
               ),

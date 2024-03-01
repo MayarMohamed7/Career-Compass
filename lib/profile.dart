@@ -15,46 +15,49 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'images/assets/NiceJob.png',
-              height: 140,
-            ),
-          ],
+        backgroundColor: Colors.white,
+        title: Center(
+          child: Image.asset(
+            'images/assets/NiceJob.png',
+            height: 140,
+          ),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-          
             Navigator.of(context).pop();
           },
         ),
       ),
       endDrawer: AppDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ProfileContent(),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-               
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(100, 40),
-              ),
-              child: Text(
-                'Save',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              ProfileContent(),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Add save functionality here
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(100, 40),
+                  primary: Color.fromARGB(255, 119, 136, 235),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: Text(
+                  'Save',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -67,49 +70,74 @@ class ProfileContent extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 16.0),
-        CircleAvatar(
-          radius: 50,
-          backgroundImage: AssetImage('images/assets/8.png'),
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blueAccent,
+                Color.fromARGB(255, 201, 112, 217),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(100),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: CircleAvatar(
+            radius: 50,
+            backgroundImage: AssetImage('images/assets/8.png'),
+          ),
         ),
         SizedBox(height: 8.0),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Container(
-            width: 40.0,
-            height: 40.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color.fromARGB(255, 0, 0, 0),
-            ),
-            child: IconButton(
-              onPressed: () {
-              },
-              icon: Icon(
-                Icons.edit,
-                color: Colors.white,
-              ),
+        TextButton.icon(
+          onPressed: () {
+            // Add edit profile picture functionality here
+          },
+          icon: Icon(
+            Icons.edit,
+            color: Colors.white,
+          ),
+          label: Text(
+            'Edit Profile Picture',
+            style: TextStyle(
+              color: Colors.white,
             ),
           ),
         ),
         SizedBox(height: 16.0),
-        ProfileItem("Name", Icons.edit, () {
+        ProfileItem("Name", Icons.person, () {
+          // Add functionality to edit name
         }),
-        ProfileItem("Username", Icons.edit, () {
+        ProfileItem("Username", Icons.person_outline, () {
+          // Add functionality to edit username
         }),
-        ProfileItem("Email", Icons.edit, () {
+        ProfileItem("Email", Icons.email, () {
+          // Add functionality to edit email
         }),
-        ProfileItem("Password", Icons.edit, () {
+        ProfileItem("Password", Icons.lock, () {
+          // Add functionality to edit password
         }),
-        ProfileItem("Phone Number", Icons.edit, () {
+        ProfileItem("Phone Number", Icons.phone, () {
+          // Add functionality to edit phone number
         }),
-        ProfileItem("Age", Icons.edit, () {
+        ProfileItem("Age", Icons.calendar_today, () {
+          // Add functionality to edit age
         }),
-        ProfileItem("Educational Level", Icons.edit, () {
+        ProfileItem("Educational Level", Icons.school, () {
+          // Add functionality to edit educational level
         }),
-        ProfileItem("Job Status", Icons.edit, () {
+        ProfileItem("Job Status", Icons.work, () {
+          // Add functionality to edit job status
         }),
-        ProfileItem("Field of Interests", Icons.edit, () {
+        ProfileItem("Field of Interests", Icons.star, () {
+          // Add functionality to edit field of interests
         }),
       ],
     );

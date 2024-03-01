@@ -83,6 +83,7 @@ flutter:
     - images/assets/boys.png
     - images/assets/111.png
     - images/assets/222.png
+    - images/assets/noo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

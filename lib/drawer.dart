@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduationinterface/chat.dart';
 import 'package:graduationinterface/intro.dart';
 import 'package:graduationinterface/profile.dart';
+import 'package:graduationinterface/myskills.dart'; // Import MySkillsPage
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -29,10 +30,10 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)),
               title: Text('New Chat', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
-               Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ChatbotInteractionPage()),
-                    );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatbotInteractionPage()),
+                );
               },
             ),
             ListTile(
@@ -46,10 +47,20 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.account_box, color: Color.fromARGB(255, 140, 22, 183)),
               title: Text('Account', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
-               Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
-                    );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.assignment, color: Color.fromARGB(255, 140, 22, 183)), // Use appropriate icon for skills
+              title: Text('My Skills', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MySkillsPage()), // Navigate to MySkillsPage
+                );
               },
             ),
             ListTile(

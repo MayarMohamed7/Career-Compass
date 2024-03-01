@@ -11,29 +11,14 @@ class IntroPage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/assets/bb.png'), 
+                image: AssetImage('images/assets/bb.png'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
-              Spacer(),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -47,29 +32,29 @@ class IntroPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              
-              Spacer(),
-              
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                   
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
-                  ),
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    minimumSize: Size(300, 50),
+                    
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    textStyle: TextStyle(
+                      color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  child: Text('Register'),
                 ),
               ),
               Padding(

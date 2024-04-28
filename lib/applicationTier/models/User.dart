@@ -1,26 +1,40 @@
-//A user model can encapsulate the user's attributes and provide methods for interacting with the data.
-
 class User {
   final String email;
   final String fullname;
   final String password;
   final String confirmPassword;
-//constructor for the User class that takes the user's  required attributes as parameters
+  String name;
+  String phoneNumber;
+  int age;
+  String educationalLevel;
+  String jobStatus;
+  String fieldOfInterests;
+
   User({
     required this.email,
     required this.fullname,
     required this.password,
     required this.confirmPassword,
+    required this.name,
+    required this.phoneNumber,
+    required this.age,
+    required this.educationalLevel,
+    required this.jobStatus,
+    required this.fieldOfInterests,
   });
-//we use a factory constructor in the user model to create User objects from
-// JSON data retrieved from Firebase, encapsulating
-// the logic for this conversion within the class itself.
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       email: json['email'] ?? '',
       fullname: json['fullname'] ?? '',
       password: json['password'] ?? '',
-      confirmPassword: json['confirmpassword'] ?? '',
+      confirmPassword: json['confirmPassword'] ?? '',
+      name: json['name'] ?? '',
+      phoneNumber: json['phoneNumber'] ?? '',
+      age: json['age'] ?? 0,
+      educationalLevel: json['educationalLevel'] ?? '',
+      jobStatus: json['jobStatus'] ?? '',
+      fieldOfInterests: json['fieldOfInterests'] ?? '',
     );
   }
 
@@ -29,7 +43,13 @@ class User {
       'email': email,
       'fullname': fullname,
       'password': password,
-      'confirmpassword': confirmPassword,
+      'confirmPassword': confirmPassword,
+      'name': name,
+      'phoneNumber': phoneNumber,
+      'age': age,
+      'educationalLevel': educationalLevel,
+      'jobStatus': jobStatus,
+      'fieldOfInterests': fieldOfInterests,
     };
   }
 }

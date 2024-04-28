@@ -60,10 +60,10 @@ class _SignupFormState extends State<SignupForm> {
               confirmPassword: _confirmPasswordController.text,
             );
             if (signUpResult == null) {
-               Navigator.push(
+              Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CreatingAccPage()),
-               );
+              );
             } else {
               // Handle signup failure
               print("Signup failed: $signUpResult");

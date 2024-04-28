@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-//import 'package:graduationinterface/chat.dart';
-import 'package:graduationinterface/intro.dart';
-//import 'package:graduationinterface/profile.dart';
+import 'package:graduationinterface/presentationTier/Pages/intro.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart'; // Import Firebase Core package
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:  IntroPage(),
+      home: IntroPage(),
       debugShowCheckedModeBanner: false,
     );
   }

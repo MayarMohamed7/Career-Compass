@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/applicationTier/models/skill.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 import 'package:graduationinterface/presentationTier/pages/Skills_page.dart';
-import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
-import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
-
+import 'package:graduationinterface/presentationTier/widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/widgets/footer.dart';
 
 class MySkillsPage extends StatefulWidget {
   @override
@@ -10,35 +11,33 @@ class MySkillsPage extends StatefulWidget {
 }
 
 class _MySkillsPageState extends State<MySkillsPage> {
-  List<String> skills = [
-    'Web Design',
-    'Front end',
-    'Ui & Ux Design',
-    'Microsoft Office Applications',
-    'Graphic Design',
-    'Full Stack'
-  ];
+  List<Skill> skills = [];
+  FirestoreMethods _firestoreMethods = FirestoreMethods();
+  @override
+  void initState() {
+    super.initState();
+    fetchAndSetSkills();
+  }
+
+  Future<void> fetchAndSetSkills() async {
+    List<Skill> fetchedSkills = await _firestoreMethods.fetchSkillsFromFirestore();
+    setState(() {
+      skills = fetchedSkills;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'images/assets/NiceJob.png',
-              height: 140,
-            ),
-          ],
-        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
+        title: Text('My Skills'),
       ),
       endDrawer: AppDrawer(),
       body: Stack(
@@ -63,7 +62,11 @@ class _MySkillsPageState extends State<MySkillsPage> {
                     children: [
                       Text(
                         'My Skills',
-                        style: TextStyle(color: Colors.white,fontSize: 22, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -73,7 +76,7 @@ class _MySkillsPageState extends State<MySkillsPage> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 119, 136, 235),
+                          backgroundColor: Color.fromARGB(255, 119, 136, 235),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
@@ -102,17 +105,17 @@ class _MySkillsPageState extends State<MySkillsPage> {
                         ),
                         child: ListTile(
                           title: Text(
-                            skills[index],
+                            skills[index].name,
                             style: TextStyle(color: Colors.white),
                           ),
                           trailing: IconButton(
                             icon: Icon(Icons.close, color: Colors.white),
                             onPressed: () {
                               setState(() {
-                                String removedSkill = skills.removeAt(index);
+                                Skill removedSkill = skills.removeAt(index);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Removed Skill: $removedSkill'),
+                                    content: Text('Removed Skill: ${removedSkill.name}'),
                                     action: SnackBarAction(
                                       label: 'Undo',
                                       onPressed: () {
@@ -136,7 +139,7 @@ class _MySkillsPageState extends State<MySkillsPage> {
           ),
         ],
       ),
-            bottomNavigationBar: Footer(),
+      bottomNavigationBar: Footer(),
     );
   }
 }

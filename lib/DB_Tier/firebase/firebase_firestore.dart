@@ -8,7 +8,8 @@ import 'package:graduationinterface/applicationTier/models/skill.dart';
  class FirestoreMethods {
   // Save the skills to Firestore
 
-  Future<void> saveSkillToFirestore(List<String> skills) async {
+  Future<void> saveSkillToFirestore(List<String> skills) async  //for SkillsPage 
+  {
     try {
       // Get the current user's ID
       String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -37,7 +38,8 @@ import 'package:graduationinterface/applicationTier/models/skill.dart';
       // Handle error
     }
   }
-Future<List<Skill>> fetchSkillsFromFirestore() async {
+Future<List<Skill>> fetchSkillsFromFirestore() async // for MY skills page
+{
   List<Skill> skills = [];
 
   try {
@@ -57,4 +59,27 @@ Future<List<Skill>> fetchSkillsFromFirestore() async {
 
   return skills;
 }
-} 
+Future<void> removeSkillFromFirestore(String skillName) async {
+  try {
+    String? userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId != null) {
+      DocumentReference userDocRef =
+          FirebaseFirestore.instance.collection('users').doc(userId);
+
+      DocumentSnapshot userSnapshot = await userDocRef.get();
+      if (userSnapshot.exists) {
+        List<String> existingSkills =
+            (userSnapshot.data() as Map<String, dynamic>)['skills']?.cast<String>() ?? [];
+
+        existingSkills.remove(skillName);
+
+        await userDocRef.update({'skills': existingSkills});
+      }
+    }
+  } catch (error) {
+    print('Error removing skill: $error');
+  }
+}
+ }
+ 
+ 

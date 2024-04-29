@@ -13,6 +13,7 @@ class MySkillsPage extends StatefulWidget {
 class _MySkillsPageState extends State<MySkillsPage> {
   List<Skill> skills = [];
   FirestoreMethods _firestoreMethods = FirestoreMethods();
+  
   @override
   void initState() {
     super.initState();
@@ -110,23 +111,28 @@ class _MySkillsPageState extends State<MySkillsPage> {
                           ),
                           trailing: IconButton(
                             icon: Icon(Icons.close, color: Colors.white),
-                            onPressed: () {
-                              setState(() {
-                                Skill removedSkill = skills.removeAt(index);
+                            onPressed: () async{
+                              Skill removedSkill = skills.removeAt(index);
+                          setState(() {});
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text('Removed Skill: ${removedSkill.name}'),
+                                    duration: Duration(seconds: 10),
                                     action: SnackBarAction(
                                       label: 'Undo',
-                                      onPressed: () {
+                                      
+                                      onPressed: () async{
+
                                         setState(() {
                                           skills.insert(index, removedSkill);
                                         });
+                                        await _firestoreMethods.saveSkillToFirestore([removedSkill.name]);
                                       },
                                     ),
                                   ),
                                 );
-                              });
+                                await _firestoreMethods.removeSkillFromFirestore(removedSkill.name);
+                              
                             },
                           ),
                         ),
@@ -137,8 +143,9 @@ class _MySkillsPageState extends State<MySkillsPage> {
               ],
             ),
           ),
-        ],
-      ),
+   
+        ],  
+      ), 
       bottomNavigationBar: Footer(),
     );
   }

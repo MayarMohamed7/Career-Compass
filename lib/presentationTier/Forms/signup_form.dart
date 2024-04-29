@@ -62,7 +62,7 @@ class _SignupFormState extends State<SignupForm> {
             if (signUpResult == null) {
               Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CreatingAccPage()),
+        MaterialPageRoute(builder: (context) => CreatingAcc()),
               );
             } else {
               // Handle signup failure

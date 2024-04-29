@@ -1,13 +1,9 @@
+// presentationTier/pages/profile_page.dart
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/drawer.dart';
-import 'package:graduationinterface/footer.dart';
-import 'package:graduationinterface//.dart';
-import 'dart:typed_data';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:graduationinterface/firebase_options.dart';
+import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 
-import 'package:image_picker/image_picker.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -15,30 +11,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Uint8List? _image;
-  StorageMethods _storageMethods = StorageMethods();
-
-  void selectImage(ImageSource source) async {
-    Uint8List? image = await _storageMethods.pickImage(source);
-    if (image != null) {
-      setState(() {
-        _image = image;
-      });
-    }
-  }
-
-  void saveProfile() async {
-    if (_image != null) {
-      String downloadURL = await _storageMethods.uploadImagetoStorage('profile_images', _image!);
-      // Get the user's name
-      String userPhoto = FirebaseAuth.instance.currentUser!.displayName!;
-
-      // Save the downloadURL in Firestore
-      CollectionReference users = FirebaseFirestore.instance.collection('users');
-      users.doc(userPhoto).set({'profileImageUrl': downloadURL});
-    }
-  }
-
+  
   String name = '';
   String email = '';
   String phoneNumber = '';
@@ -70,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              ProfileContent(_image, selectImage),
+              ProfileContent(),
               ProfileItem("Name: $name", Icons.person, (newName) {
                 setState(() {
                   name = newName;
@@ -109,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  saveProfile();
+            
                   setState(() {});
                 },
                 style: ElevatedButton.styleFrom(
@@ -137,10 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
 }
 
 class ProfileContent extends StatelessWidget {
-  final Uint8List? image;
-  final Function(ImageSource) selectImage;
 
-  ProfileContent(this.image, this.selectImage);
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +133,7 @@ class ProfileContent extends StatelessWidget {
               ),
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: image != null
-                    ? MemoryImage(image!)
-                    : AssetImage('images/assets/8.png') as ImageProvider,
+                backgroundImage:  AssetImage('images/assets/8.png'),
               ),
             ),
             Positioned(
@@ -173,11 +141,7 @@ class ProfileContent extends StatelessWidget {
               right: 0,
               child: PopupMenuButton<String>(
                 onSelected: (value) {
-                  if (value == 'camera') {
-                    selectImage(ImageSource.camera);
-                  } else if (value == 'gallery') {
-                    selectImage(ImageSource.gallery);
-                  }
+                 
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                   const PopupMenuItem<String>(

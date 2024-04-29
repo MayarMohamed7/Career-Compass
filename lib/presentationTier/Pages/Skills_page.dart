@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/MySkills.dart';
-import 'package:graduationinterface/Optional.dart';
-import 'package:graduationinterface/drawer.dart';
-import 'package:graduationinterface/footer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/skillOval.dart';
+import 'package:graduationinterface/presentationTier/Widgets/suggskillOval.dart';
+import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 
 class SkillsPage extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class SkillsPage extends StatefulWidget {
 class _SkillsPageState extends State<SkillsPage> {
   final TextEditingController _textFieldController = TextEditingController();
   List<String> typedSkills = [];
+  FirestoreMethods _firestoreMethods = FirestoreMethods();
 
   @override
   void dispose() {
@@ -166,70 +169,22 @@ class _SkillsPageState extends State<SkillsPage> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text(
-                              'Changes saved',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            content: Container(
-                              width: 150,
-                              height: 150,
-                              child: Image.asset(
-                                'images/assets/222.png', // Adjust the image path as needed
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            actions: [
-                              Center(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    gradient: LinearGradient(
-                                      colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                  ),
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => MySkillsPage()));
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Adjust padding here
-                                      child: Text(
-                                        'Go to skills page',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      showChangesSavedDialog(context);
+                      _firestoreMethods.saveSkillToFirestore(typedSkills);
                     },
                     style: ElevatedButton.styleFrom(
-                    backgroundColor:Color(0xFF3B52BB),
+                      backgroundColor: Color(0xFF3B52BB),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                     ),
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 8.0), // Adjust vertical padding here
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Center(
                         child: Text(
                           'Save',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), // Adjust font size here
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                       ),
                     ),
@@ -241,76 +196,6 @@ class _SkillsPageState extends State<SkillsPage> {
         ],
       ),
       bottomNavigationBar: Footer(),
-    );
-  }
-}
-
-class SkillOval extends StatelessWidget {
-  final String skillName;
-  final VoidCallback onDelete;
-
-  SkillOval({required this.skillName, required this.onDelete});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 10, bottom: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
-          colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-            child: Text(skillName, style: TextStyle(fontSize: 16, color: Colors.white)),
-          ),
-          IconButton(
-            icon: Icon(Icons.close, color: Colors.white),
-            onPressed: onDelete,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SuggestedSkillOval extends StatelessWidget {
-  final String skillName;
-  final VoidCallback onAdd;
-
-  SuggestedSkillOval({required this.skillName, required this.onAdd});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 10, bottom: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
-          colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-            child: Text(skillName, style: TextStyle(fontSize: 16, color: Colors.white)),
-          ),
-          IconButton(
-            icon: Icon(Icons.add, color: Colors.white),
-            onPressed: onAdd,
-          ),
-        ],
-      ),
     );
   }
 }

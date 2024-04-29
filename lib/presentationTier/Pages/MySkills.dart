@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/Skills.dart';
-import 'package:graduationinterface/drawer.dart';
-import 'package:graduationinterface/footer.dart';
+import 'package:graduationinterface/presentationTier/pages/Skills_page.dart';
+import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
+
 
 class MySkillsPage extends StatefulWidget {
   @override

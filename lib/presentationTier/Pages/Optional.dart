@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/presentationTier/pages/Skills.dart';
+import 'package:graduationinterface/presentationTier/pages/Skills_page.dart';
 import 'package:graduationinterface/presentationTier/chat.dart';
 import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';

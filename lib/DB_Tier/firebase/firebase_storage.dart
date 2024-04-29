@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
 
 class StorageMethods {
   final FirebaseStorage _storage = FirebaseStorage.instance;

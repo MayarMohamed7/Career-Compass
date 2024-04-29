@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/drawer.dart';
-import 'package:graduationinterface/footer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 
 class ChatHistoryPage extends StatelessWidget {
   @override

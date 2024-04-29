@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:graduationinterface/presentationTier/Pages/questions_page.dart';
+
 class CreatingAcc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -103,15 +105,23 @@ class CreatingAcc extends StatelessWidget {
               SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () {
-                  // Implement create account logic here
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 40),
-                ),
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+    Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionsPage()));
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Color(0xFF3B52BB), // Background color
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Text(
+                    'Create Account',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

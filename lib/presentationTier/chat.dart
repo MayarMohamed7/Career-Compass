@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/drawer.dart';
-import 'package:graduationinterface/footer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 
 class ChatbotInteractionPage extends StatelessWidget {
   @override
@@ -22,9 +22,8 @@ class ChatbotInteractionPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ChatbotInterface(),
       ),
-       endDrawer: AppDrawer(),
-             bottomNavigationBar: Footer(),
-
+      endDrawer: AppDrawer(),
+      bottomNavigationBar: Footer(),
     );
   }
 }
@@ -70,7 +69,7 @@ class _ChatbotInterfaceState extends State<ChatbotInterface> {
                   hintText: 'Enter your message',
                   border: OutlineInputBorder(),
                 ),
-                style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)), 
+                style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
               ),
             ),
             SizedBox(width: 8.0),
@@ -81,7 +80,7 @@ class _ChatbotInterfaceState extends State<ChatbotInterface> {
               child: Container(
                 padding: EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 201, 112, 217), 
+                  color: Color.fromARGB(255, 201, 112, 217),
                 ),
                 child: Icon(
                   Icons.send,
@@ -130,7 +129,7 @@ class ChatMessage extends StatelessWidget {
           decoration: BoxDecoration(
             color: isUser
                 ? Color.fromARGB(255, 176, 169, 177)
-                : Color.fromARGB(255, 201, 112, 217), 
+                : Color.fromARGB(255, 201, 112, 217),
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
@@ -147,7 +146,7 @@ class ChatMessage extends StatelessWidget {
               if (!isUser && isBot) ...[
                 CircleAvatar(
                   radius: 20.0,
-                  backgroundImage: AssetImage('images/assets/8.png'), 
+                  backgroundImage: AssetImage('images/assets/8.png'),
                 ),
                 SizedBox(width: 8.0),
               ],

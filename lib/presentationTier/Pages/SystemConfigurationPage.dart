@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/adminhome.dart';
-import 'package:graduationinterface/draweradmin.dart';
+import 'package:graduationinterface/presentationTier/pages/adminhome.dart';
+import 'package:graduationinterface/presentationTier/Widgets/draweradmin.dart';
 
 class SystemConfigurationPage extends StatelessWidget {
   @override

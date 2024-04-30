@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/draweradmin.dart';
+import 'package:graduationinterface/presentationTier/Widgets/draweradmin.dart';
 
 class AdminDashboardPage extends StatelessWidget {
   @override

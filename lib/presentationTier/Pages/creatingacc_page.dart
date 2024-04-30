@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/questions.dart';
+
+import 'package:graduationinterface/presentationTier/Pages/questions_page.dart';
 
 class CreatingAcc extends StatelessWidget {
   @override
@@ -20,7 +21,7 @@ class CreatingAcc extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/assets/signn.png'), 
+            image: AssetImage('images/assets/signn.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -56,9 +57,7 @@ class CreatingAcc extends StatelessWidget {
                           color: Colors.blue,
                         ),
                         child: IconButton(
-                          onPressed: () {
-                            
-                          },
+                          onPressed: () {},
                           icon: Icon(
                             Icons.camera_alt_rounded,
                             color: Colors.white,
@@ -80,7 +79,11 @@ class CreatingAcc extends StatelessWidget {
               ),
               SignupFormField(
                 label: 'Educational Level',
-                options: ['High School', 'Bachelor\'s Degree', 'Master\'s Degree'],
+                options: [
+                  'High School',
+                  'Bachelor\'s Degree',
+                  'Master\'s Degree'
+                ],
               ),
               SignupFormField(
                 label: 'Job Status',
@@ -104,10 +107,11 @@ class CreatingAcc extends StatelessWidget {
               SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionsPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => QuestionsPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF3B52BB), // Background color
+                  backgroundColor: Color(0xFF3B52BB), // Background color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -179,9 +183,7 @@ class _SignupFormFieldState extends State<SignupFormField> {
         else
           TextFormField(
             keyboardType: widget.keyboardType,
-            onChanged: (value) {
-              
-            },
+            onChanged: (value) {},
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20.0),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "276801076629",
+    "project_id": "careercompass-e4fef",
+    "storage_bucket": "careercompass-e4fef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276801076629:android:70987e1ed54c7947dd0a9c",
+        "android_client_info": {
+          "package_name": "com.example.graduationinterface"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwWCujhf-YI5eOKzBkOYiTnvyIdee1j-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

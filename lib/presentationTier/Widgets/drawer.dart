@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/History.dart';
-import 'package:graduationinterface/Recommedner.dart';
-import 'package:graduationinterface/chat.dart';
-import 'package:graduationinterface/intro.dart';
-import 'package:graduationinterface/profile.dart';
-import 'package:graduationinterface/myskills.dart'; // Import MySkillsPage
+import 'package:graduationinterface/presentationTier/History.dart';
+import 'package:graduationinterface/presentationTier/Pages/profile_page.dart';
+import 'package:graduationinterface/presentationTier/forms/profile_item.dart';
+import 'package:graduationinterface/presentationTier/chat.dart';
+import 'package:graduationinterface/presentationTier/Pages/intro.dart';
+import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';
+import 'package:graduationinterface/presentationTier/Pages/Recommedner.dart' ;
 
 class AppDrawer extends StatelessWidget {
   @override

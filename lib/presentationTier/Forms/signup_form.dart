@@ -1,53 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/creatingacc.dart';
-
-class SignupPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'images/assets/NiceJob.png',
-              height: 140,
-            ),
-          ],
-        ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/assets/back.signup.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(height: 225),
-              Text(
-                'Create an Account!',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: SignupForm(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
+import 'package:graduationinterface/presentationTier/Pages/creatingacc_page.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
 
 class SignupForm extends StatefulWidget {
   @override
@@ -60,6 +14,15 @@ class _SignupFormState extends State<SignupForm> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,11 +54,32 @@ class _SignupFormState extends State<SignupForm> {
         ),
         SizedBox(height: 20.0),
         ElevatedButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => CreatingAcc()));
+          onPressed: () async {
+            String? signUpResult =
+                await AuthMethods().signUpWithEmailAndPassword(
+              email: _emailController.text,
+              password: _passwordController.text,
+              fullName: _fullNameController.text,
+              confirmPassword: _confirmPasswordController.text,
+            );
+            if (signUpResult == null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CreatingAcc()),
+              );
+            } else {
+              // Handle signup failure
+              print("Signup failed: $signUpResult");
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Sign-up failed: $signUpResult"),
+                  duration: Duration(seconds: 5),
+                ),
+              );
+            }
           },
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF3B52BB), // Background color
+            backgroundColor: Color(0xFF3B52BB), // Background color
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -115,7 +99,7 @@ class _SignupFormState extends State<SignupForm> {
         SizedBox(height: 16.0),
         GestureDetector(
           onTap: () {
-            Navigator.pop(context); 
+            Navigator.pop(context);
           },
           child: Center(
             child: Text(

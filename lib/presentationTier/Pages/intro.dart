@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/adminhome.dart';
-import 'package:graduationinterface/login.dart';
+import 'package:graduationinterface/presentationTier/Pages/adminhome.dart';
+import 'package:graduationinterface/presentationTier/Pages/login_page.dart';
 
 class IntroPage extends StatelessWidget {
   @override

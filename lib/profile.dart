@@ -7,7 +7,6 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
         title: Center(
           child: Image.asset(
             'images/assets/NiceJob.png',
@@ -52,8 +51,7 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
-            bottomNavigationBar: Footer(),
-
+      bottomNavigationBar: Footer(),
     );
   }
 }
@@ -75,7 +73,6 @@ class ProfileContent extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(100),
-            
           ),
           child: CircleAvatar(
             radius: 50,

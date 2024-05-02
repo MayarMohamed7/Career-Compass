@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
  // this file handles all image related code like picking image from gallery or camera 
@@ -32,6 +32,8 @@ class CustomImagePicker {
     }
     return null;
   }
+
+   
 }
 //  I renamed the class 
 //to CustomImagePicker to avoid conflicts with the ImagePicker class provided by the image_picker package

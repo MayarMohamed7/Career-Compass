@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
 import 'package:graduationinterface/presentationTier/Pages/creatingacc_page.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
+import 'package:graduationinterface/applicationTier/models/User.dart';
 class SignupForm extends StatefulWidget {
-  @override
+
+ 
+    @override
   _SignupFormState createState() => _SignupFormState();
 }
 
@@ -12,7 +15,22 @@ class _SignupFormState extends State<SignupForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
+  
+  bool _passwordVisible = false;
+  bool _confirmPasswordVisible = false;
+  bool _isLoading = false;
 
+  
+  // Function to toggle password and confirm password visibility
+  void _toggleVisibility(bool isPassword) {
+    setState(() {
+      if (isPassword) {
+        _passwordVisible = !_passwordVisible;
+      } else {
+        _confirmPasswordVisible = !_confirmPasswordVisible;
+      }
+    });
+  }
   @override
   void dispose() {
     _fullNameController.dispose();
@@ -41,28 +59,57 @@ class _SignupFormState extends State<SignupForm> {
         SizedBox(height: 16.0),
         TextField(
           controller: _passwordController,
-          obscureText: true,
-          decoration: InputDecoration(labelText: 'Password'),
+            obscureText: !_passwordVisible,
+        decoration: InputDecoration(
+            labelText: 'Password',
+            suffixIcon: IconButton(
+              onPressed: () => _toggleVisibility(true),
+              icon: Icon(_passwordVisible ? Icons.visibility : Icons.visibility_off),
+            ),
+          ),
         ),
         SizedBox(height: 16.0),
         TextField(
           controller: _confirmPasswordController,
-          obscureText: true,
-          decoration: InputDecoration(labelText: 'Confirm Password'),
+            obscureText: !_confirmPasswordVisible,
+         decoration: InputDecoration(
+            labelText: 'Confirm Password',
+            suffixIcon: IconButton(
+              onPressed: () => _toggleVisibility(false),
+              icon: Icon(_confirmPasswordVisible ? Icons.visibility : Icons.visibility_off),
+            ),
+          ),
         ),
         SizedBox(height: 20.0),
         ElevatedButton(
           onPressed: () async {
+  if (_passwordController.text != _confirmPasswordController.text) {
+    
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Passwords do not match"),
+        duration: Duration(seconds: 5),
+        backgroundColor: Colors.red,
+      ),
+    );
+    return; 
+  }
+            setState(() {
+      _isLoading = true;
+    });
             String? signUpResult = await AuthMethods().signUpWithEmailAndPassword(
               email: _emailController.text,
               password: _passwordController.text,
               fullName: _fullNameController.text,
               confirmPassword: _confirmPasswordController.text,
             );
+            setState(() {
+      _isLoading = false;
+    });
             if (signUpResult == null) {
               Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CreatingAcc()),
+        MaterialPageRoute(builder: (context) => CreatingAccPage()),
               );
             } else {
               // Handle signup failure
@@ -83,14 +130,17 @@ class _SignupFormState extends State<SignupForm> {
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(
-              'Signup',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: _isLoading 
+                ? CircularProgressIndicator(color: Colors.white) 
+                : Text(
+                      'Signup',
+                      style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
           ),
         ),
         SizedBox(height: 16.0),

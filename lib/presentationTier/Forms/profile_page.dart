@@ -1,10 +1,8 @@
-// presentationTier/pages/profile_page.dart
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/presentationTier/Pages/profile_content.dart';
+import 'package:graduationinterface/presentationTier/Widgets/profile_item.dart';
 import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
-
-
-
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -105,112 +103,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       bottomNavigationBar: Footer(),
-    );
-  }
-}
-
-class ProfileContent extends StatelessWidget {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 10.0),
-        Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blueAccent,
-                    Color.fromARGB(255, 201, 112, 217),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage:  AssetImage('images/assets/8.png'),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: PopupMenuButton<String>(
-                onSelected: (value) {
-                 
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
-                    value: 'camera',
-                    child: ListTile(
-                      leading: Icon(Icons.camera_alt),
-                      title: Text('Camera'),
-                    ),
-                  ),
-                  const PopupMenuItem<String>(
-                    value: 'gallery',
-                    child: ListTile(
-                      leading: Icon(Icons.photo_library),
-                      title: Text('Gallery'),
-                    ),
-                  ),
-                ],
-                icon: const Icon(Icons.add_a_photo),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class ProfileItem extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Function(String)? onTap;
-
-  ProfileItem(this.title, this.icon, this.onTap);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: () {
-        final controller = TextEditingController();
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Edit your  $title'),
-              content: TextField(
-                controller: controller,
-                decoration: InputDecoration(hintText: 'Enter here'),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text('Cancel'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                TextButton(
-                  child: Text('Save'),
-                  onPressed: () {
-                    onTap?.call(controller.text);
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
-      },
     );
   }
 }

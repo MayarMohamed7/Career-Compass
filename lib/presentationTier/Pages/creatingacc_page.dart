@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
-
 import 'package:graduationinterface/presentationTier/Pages/questions_page.dart';
+import 'package:graduationinterface/presentationTier/Forms/creatingacc_form.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
+import 'package:graduationinterface/applicationTier/services/CustomImagePicker.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:typed_data';
 
-class CreatingAcc extends StatelessWidget {
+class CreatingAccPage extends StatefulWidget {
   @override
+  _CreatingAccPageState createState() => _CreatingAccPageState();
+}
+
+class _CreatingAccPageState extends State<CreatingAccPage> {
+  FirestoreMethods _firestoreMethods = FirestoreMethods();
+  CustomImagePicker _customImagePicker = CustomImagePicker();
+  Uint8List? _image;
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController selectedEducationalLevel =
+      TextEditingController();
+  final TextEditingController selectedJobStatus = TextEditingController();
+  final TextEditingController selectedFieldOfInterests =
+      TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -56,8 +75,40 @@ class CreatingAcc extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: Colors.blue,
                         ),
-                        child: IconButton(
-                          onPressed: () {},
+                        child: PopupMenuButton(
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              child: ListTile(
+                                leading: Icon(Icons.camera_alt),
+                                title: Text('Camera'),
+                                onTap: () async {
+                                  Uint8List? image = await _customImagePicker
+                                      .pickImage(ImageSource.camera);
+
+                                  if (image != null) {
+                                    setState(() {
+                                      _image = image;
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                            PopupMenuItem(
+                              child: ListTile(
+                                leading: Icon(Icons.photo_library),
+                                title: Text('Gallery'),
+                                onTap: () async {
+                                  Uint8List? image = await _customImagePicker
+                                      .pickImage(ImageSource.gallery);
+                                  {
+                                    setState(() {
+                                      _image = image;
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
                           icon: Icon(
                             Icons.camera_alt_rounded,
                             color: Colors.white,
@@ -70,45 +121,36 @@ class CreatingAcc extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               SignupFormField(
-                label: 'Phone Number',
-                keyboardType: TextInputType.text,
-              ),
-              SignupFormField(
-                label: 'Age',
-                keyboardType: TextInputType.text,
-              ),
-              SignupFormField(
-                label: 'Educational Level',
-                options: [
-                  'High School',
-                  'Bachelor\'s Degree',
-                  'Master\'s Degree'
-                ],
-              ),
-              SignupFormField(
-                label: 'Job Status',
-                options: ['Employed', 'Unemployed', 'Student'],
-              ),
-              SignupFormField(
-                label: 'Field of Interests',
-                options: [
-                  'Engineering',
-                  'Programming',
-                  'Arts',
-                  'Healthcare',
-                  'Finance',
-                  'Marketing',
-                  'Design',
-                  'Education',
-                  'Science',
-                  'Others', // Placeholder for additional options
-                ],
+                phoneNumberController: phoneNumberController,
+                ageController: ageController,
+                selectedEducationalLevel: selectedEducationalLevel,
+                selectedJobStatus: selectedJobStatus,
+                selectedFieldOfInterests: selectedFieldOfInterests,
               ),
               SizedBox(height: 24.0),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => QuestionsPage()));
+                onPressed: () async {
+                  String? res = await _firestoreMethods.saveUserData(
+                    phoneNumber: phoneNumberController.text,
+                    age: ageController.text,
+                    educationalLevel: selectedEducationalLevel.text,
+                    jobStatus: selectedJobStatus.text,
+                    fieldOfInterests: selectedFieldOfInterests.text,
+                  );
+                  if (res == null) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => QuestionsPage()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error creating account: $res'),
+                        duration: Duration(seconds: 2),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF3B52BB), // Background color
@@ -132,66 +174,6 @@ class CreatingAcc extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SignupFormField extends StatefulWidget {
-  final String label;
-  final List<String>? options;
-  final TextInputType? keyboardType;
-
-  SignupFormField({required this.label, this.options, this.keyboardType});
-
-  @override
-  _SignupFormFieldState createState() => _SignupFormFieldState();
-}
-
-class _SignupFormFieldState extends State<SignupFormField> {
-  String? _selectedOption;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          widget.label,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 8.0),
-        if (widget.options != null)
-          DropdownButtonFormField(
-            value: _selectedOption,
-            onChanged: (String? value) {
-              setState(() {
-                _selectedOption = value;
-              });
-            },
-            items: widget.options!.map((String option) {
-              return DropdownMenuItem(
-                value: option,
-                child: Text(option),
-              );
-            }).toList(),
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
-          )
-        else
-          TextFormField(
-            keyboardType: widget.keyboardType,
-            onChanged: (value) {},
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
-          ),
-        SizedBox(height: 16.0),
-      ],
     );
   }
 }

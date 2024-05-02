@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/presentationTier/History.dart';
-import 'package:graduationinterface/presentationTier/Pages/profile_page.dart';
-import 'package:graduationinterface/presentationTier/forms/profile_item.dart';
-import 'package:graduationinterface/presentationTier/chat.dart';
+import 'package:graduationinterface/presentationTier/Pages/chatHistory_page.dart';
+import 'package:graduationinterface/presentationTier/forms/profile_page.dart';
+import 'package:graduationinterface/presentationTier/Pages/chat.dart';
 import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';
 import 'package:graduationinterface/presentationTier/Pages/Recommedner.dart' ;
-
+import 'package:graduationinterface/presentationTier/Pages/Optional.dart'; 
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -66,6 +65,16 @@ class AppDrawer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MySkillsPage()), // Navigate to MySkillsPage
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: Color.fromARGB(255, 140, 22, 183)), 
+              title: Text('Home', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OptionalPage()), 
                 );
               },
             ),

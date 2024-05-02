@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/adminhome.dart';
 import 'package:graduationinterface/presentationTier/Pages/login_page.dart';
+import 'package:graduationinterface/applicationTier/models/User.dart';
 
 class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final User user = User(
+      email: '',
+      fullname: '',
+      password: '',
+      confirmPassword: '',
+      phoneNumber: '',
+      age: 0,
+      educationalLevel: '',
+      jobStatus: '',
+      fieldOfInterests: '',
+    );  
     return Scaffold(
       body: Stack(
         children: [
@@ -38,7 +50,7 @@ class IntroPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage(user: user)),
                     );
                   },
                   style: ElevatedButton.styleFrom(

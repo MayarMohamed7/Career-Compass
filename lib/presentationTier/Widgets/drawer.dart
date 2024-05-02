@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/chatHistory_page.dart';
-import 'package:graduationinterface/presentationTier/Pages/profile_page.dart';
-import 'package:graduationinterface/presentationTier/forms/profile_item.dart';
+import 'package:graduationinterface/presentationTier/forms/profile_page.dart';
 import 'package:graduationinterface/presentationTier/Pages/chat.dart';
 import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';

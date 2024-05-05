@@ -6,6 +6,7 @@ import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; 
+import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -133,6 +134,7 @@ void saveData() async {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
+                  showChangesSavedDialog(context);
                   saveData();
                   setState(() {});
                 },

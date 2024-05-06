@@ -6,7 +6,8 @@ import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';
 import 'package:graduationinterface/presentationTier/Pages/Recommedner.dart' ;
 import 'package:graduationinterface/presentationTier/Pages/Optional.dart'; 
-import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
+import 'package:graduationinterface/presentationTier/Pages/feedback_user.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -84,8 +85,20 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.auto_awesome, color: Color.fromARGB(255, 140, 22, 183)), // Add an appropriate icon for Recommender
-              title: const Text('Recommender', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+
+              leading: Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)), 
+              title: Text('Rate', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => feedback_user()), 
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.auto_awesome, color: Color.fromARGB(255, 140, 22, 183)), // Add an appropriate icon for Recommender
+              title: Text('Recommender', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+
               onTap: () {
                 Navigator.push(
                   context,

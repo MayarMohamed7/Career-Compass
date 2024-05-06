@@ -38,7 +38,7 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/assets/signn.png'),
             fit: BoxFit.cover,
@@ -59,7 +59,7 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.black, width: 0.5),
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage('images/assets/8.png'),
                           fit: BoxFit.cover,
                         ),
@@ -71,7 +71,7 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                       child: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.blue,
                         ),
@@ -127,7 +127,7 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                 selectedJobStatus: selectedJobStatus,
                 selectedFieldOfInterests: selectedFieldOfInterests,
               ),
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () async {
                   String? res = await _firestoreMethods.saveUserData(
@@ -153,12 +153,12 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF3B52BB), // Background color
+                  backgroundColor: const Color(0xFF3B52BB), // Background color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Text(
                     'Create Account',

@@ -8,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -83,13 +85,13 @@ void saveData() async {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -131,7 +133,7 @@ void saveData() async {
                   fieldOfInterests = newInterests;
                 });
               }),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   showChangesSavedDialog(context);
@@ -139,13 +141,13 @@ void saveData() async {
                   setState(() {});
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 40),
-                  backgroundColor: Color.fromARGB(255, 119, 136, 235), // Background color
+                  minimumSize: const Size(100, 40),
+                  backgroundColor: const Color.fromARGB(255, 119, 136, 235), // Background color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Save',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -157,7 +159,7 @@ void saveData() async {
           ),
         ),
       ),
-      bottomNavigationBar: Footer(),
+      bottomNavigationBar: const Footer(),
     );
   }
 }

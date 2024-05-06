@@ -4,11 +4,13 @@ import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 import 'package:graduationinterface/presentationTier/widgets/chat_history_card.dart';
 
 class ChatHistoryPage extends StatelessWidget {
+  const ChatHistoryPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -19,15 +21,15 @@ class ChatHistoryPage extends StatelessWidget {
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: ListView(
-        children: [
+        children: const [
           ChatHistoryCard(
             title: "Resume Review",
             message: "Your resume looks great! Let's discuss job opportunities.",
@@ -61,7 +63,7 @@ class ChatHistoryPage extends StatelessWidget {
           // Add more chat history items here
         ],
       ),
-      bottomNavigationBar: Footer(),
+      bottomNavigationBar: const Footer(),
     );
   }
 }

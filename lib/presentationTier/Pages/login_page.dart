@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -22,13 +22,13 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/assets/backk.png'),
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 240),
@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: LoginForm(),
             ),
           ],

@@ -6,6 +6,8 @@ import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';
 import 'package:graduationinterface/presentationTier/Pages/Recommedner.dart' ;
 import 'package:graduationinterface/presentationTier/Pages/Optional.dart'; 
+import 'package:graduationinterface/applicationTier/Repositories/user_repository.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,9 @@ class AppDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                  MaterialPageRoute(builder: (context) => ProfilePage(),
+  ),
+
                 );
               },
             ),
@@ -92,10 +96,13 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.exit_to_app, color:Color.fromARGB(255, 140, 22, 183)),
               title: Text('Sign Out', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
-                Navigator.pushReplacement(
+                AuthMethods().signOut();
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => IntroPage()), 
+
                 );
+
               },
             ),
           ],

@@ -133,7 +133,7 @@ class _SignupFormState extends State<SignupForm> {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: _isLoading
                 ? CircularProgressIndicator(color: Colors.white)

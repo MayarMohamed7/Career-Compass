@@ -3,21 +3,75 @@ import 'package:graduationinterface/presentationTier/Pages/profile_content.dart'
 import 'package:graduationinterface/presentationTier/Widgets/profile_item.dart';
 import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; 
+import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  
-  String name = '';
+  String fullname = '';
   String email = '';
   String phoneNumber = '';
   String age = '';
   String educationalLevel = '';
   String jobStatus = '';
   String fieldOfInterests = '';
+  User? user ; 
+  var userData={};   
+  var Cred={}; 
+  
+/// These Dart functions use Firebase Firestore to retrieve user data and update the state accordingly.
+getCred() async {
+  
+var  snap  =await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
+Cred = snap.data()!; 
+setState(() {
+  email=Cred['email']; 
+  fullname=Cred['fullname'];
+});
+    }
+    getData() async {
+  
+var  snap  =await FirebaseFirestore.instance.collection('userData').doc(user!.uid).get();
+userData = snap.data()!; 
+setState(() {
+  age = userData['age'];
+  phoneNumber = userData['phoneNumber'];
+  educationalLevel = userData['educationalLevel'];
+  jobStatus = userData['jobStatus'];
+  fieldOfInterests = userData['fieldOfInterests'];
 
+});
+
+    }
+
+  @override
+  void initState() {
+    super.initState();
+  user = FirebaseAuth.instance.currentUser; 
+  getData();
+  getCred();
+  }
+
+void saveData() async {
+  await FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
+    'email': email,
+    'fullname': fullname,
+  });
+
+  await FirebaseFirestore.instance.collection('userData').doc(user!.uid).update({
+    'age': age,
+    'phoneNumber': phoneNumber,
+    'educationalLevel': educationalLevel,
+    'jobStatus': jobStatus,
+    'fieldOfInterests': fieldOfInterests,
+  });
+}
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             children: [
               ProfileContent(),
-              ProfileItem("Name: $name", Icons.person, (newName) {
+              ProfileItem("Name: $fullname", Icons.person, (newName) {
                 setState(() {
-                  name = newName;
+                  fullname = newName;
                 });
               }),
               ProfileItem("Email: $email", Icons.email, (newEmail) {
@@ -80,7 +134,8 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-            
+                  showChangesSavedDialog(context);
+                  saveData();
                   setState(() {});
                 },
                 style: ElevatedButton.styleFrom(

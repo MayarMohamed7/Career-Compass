@@ -6,7 +6,6 @@ import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';
 import 'package:graduationinterface/presentationTier/Pages/Recommedner.dart' ;
 import 'package:graduationinterface/presentationTier/Pages/Optional.dart'; 
-import 'package:graduationinterface/applicationTier/Repositories/user_repository.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -38,7 +37,7 @@ class AppDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ChatbotInteractionPage()),
+                  MaterialPageRoute(builder: (context) => ChatbotInteractionPage()),
                 );
               },
             ),

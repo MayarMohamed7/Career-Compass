@@ -67,7 +67,7 @@ class OptionalPage extends StatelessWidget {
                 'Chat-Bot',
                 buttonHeight,
                 buttonWidth,
-                () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatbotInteractionPage())), // Navigate to Chat Bot Page
+                () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChatbotInteractionPage())), // Navigate to Chat Bot Page
               ),
             ],
           ),

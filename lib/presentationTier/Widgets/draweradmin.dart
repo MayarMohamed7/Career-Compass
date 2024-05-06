@@ -4,6 +4,8 @@ import 'package:graduationinterface/presentationTier/Pages/feed.dart';
 import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 
 class AppDrawer2 extends StatelessWidget {
+  const AppDrawer2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -12,6 +14,9 @@ class AppDrawer2 extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -21,37 +26,42 @@ class AppDrawer2 extends StatelessWidget {
                   ),
                 ],
               ),
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 255, 255),
-              ),
             ),
             ListTile(
-              leading: Icon(Icons.settings, color: Color.fromARGB(255, 0, 0, 0)),
-              title: Text('System Configuration', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading:
+                  const Icon(Icons.settings, color: Color.fromARGB(255, 0, 0, 0)),
+              title: const Text('System Configuration',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
               onTap: () {
-                 Navigator.pushReplacement(
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => SystemConfigurationPage()), 
+                  MaterialPageRoute(
+                      builder: (context) => const SystemConfigurationPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.bar_chart, color: Color.fromARGB(255, 0, 0, 0)),
-              title: Text('Feedback Analysis', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading:
+                  const Icon(Icons.bar_chart, color: Color.fromARGB(255, 0, 0, 0)),
+              title: const Text('Feedback Analysis',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => FeedbackAnalysisPage()), 
+                  MaterialPageRoute(
+                      builder: (context) => const FeedbackAnalysisPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.exit_to_app, color: Color.fromARGB(255, 0, 0, 0)),
-              title: Text('Sign Out', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading:
+                  const Icon(Icons.exit_to_app, color: Color.fromARGB(255, 0, 0, 0)),
+              title: const Text('Sign Out',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => IntroPage()),
+                  MaterialPageRoute(builder: (context) => const IntroPage()),
                 );
               },
             ),

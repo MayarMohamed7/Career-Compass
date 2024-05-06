@@ -9,7 +9,7 @@ class OptionalPage extends StatelessWidget {
   final double buttonHeight;
   final double buttonWidth;
 
-  OptionalPage({
+  const OptionalPage({super.key, 
     this.buttonHeight = 250,
     this.buttonWidth = 300,
   });
@@ -30,9 +30,9 @@ class OptionalPage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         automaticallyImplyLeading: false,
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/assets/boys.png"),
             fit: BoxFit.cover,
@@ -42,7 +42,7 @@ class OptionalPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Welcome to career compass for personalized career advice!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -51,16 +51,16 @@ class OptionalPage extends StatelessWidget {
                   color: Color.fromARGB(255, 140, 22, 183),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               buttonWithImageAndText(
                 context,
                 'images/assets/222.png',
                 'Skills Entry',
                 buttonHeight,
                 buttonWidth,
-                () => Navigator.push(context, MaterialPageRoute(builder: (context) => SkillsPage())), // Navigate to Skills Page
+                () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SkillsPage())), // Navigate to Skills Page
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               buttonWithImageAndText(
                 context,
                 'images/assets/111.png',
@@ -73,7 +73,7 @@ class OptionalPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Footer(),
+      bottomNavigationBar: const Footer(),
     );
   }
 
@@ -91,13 +91,13 @@ class OptionalPage extends StatelessWidget {
               color: Colors.black.withOpacity(0.3),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-           backgroundColor: Color.fromARGB(255, 201, 112, 217), // Background color
+           backgroundColor: const Color.fromARGB(255, 201, 112, 217), // Background color
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -108,7 +108,7 @@ class OptionalPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(imagePath, height: height * 0.7),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(
                 buttonText,
                 style: TextStyle(

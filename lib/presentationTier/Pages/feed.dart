@@ -3,11 +3,13 @@ import 'package:graduationinterface/presentationTier/Widgets/draweradmin.dart';
 import 'package:graduationinterface/presentationTier/pages/adminhome.dart';
 
 class FeedbackAnalysisPage extends StatelessWidget {
+  const FeedbackAnalysisPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -18,19 +20,19 @@ class FeedbackAnalysisPage extends StatelessWidget {
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AdminDashboardPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminDashboardPage()));
           },
         ),
       ),
-      endDrawer: AppDrawer2(),
+      endDrawer: const AppDrawer2(),
       body: Stack(
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/assets/last.png'), 
                 fit: BoxFit.cover,
@@ -43,7 +45,7 @@ class FeedbackAnalysisPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
+                  const Text(
                     'Feedback Analysis',
                     style: TextStyle(
                       fontSize: 24.0,
@@ -52,23 +54,23 @@ class FeedbackAnalysisPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Container(
                     height: 200.0,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: AssetImage('images/assets/lovee.png'), // Replace with your admin photo asset
                         fit: BoxFit.fitHeight,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  SizedBox(height: 24.0),
+                  const SizedBox(height: 24.0),
 
-                  Card(
+                  const Card(
                     elevation: 5.0,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -92,7 +94,7 @@ class FeedbackAnalysisPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
 
                   Card(
                     elevation: 5.0,
@@ -101,7 +103,7 @@ class FeedbackAnalysisPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Text(
+                          const Text(
                             'Feedback Trends',
                             style: TextStyle(
                               fontSize: 20.0,
@@ -109,7 +111,7 @@ class FeedbackAnalysisPage extends StatelessWidget {
                               color: Color(0xFF3B52BB), 
                             ),
                           ),
-                          SizedBox(height: 12.0),
+                          const SizedBox(height: 12.0),
                           Image.asset(
                             'images/assets/FOUR.png', 
                             height: 200.0,

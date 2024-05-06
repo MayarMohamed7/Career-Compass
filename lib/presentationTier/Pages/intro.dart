@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/adminhome.dart';
 import 'package:graduationinterface/presentationTier/Pages/login_page.dart';
-import 'package:graduationinterface/applicationTier/models/User.dart';
+
+import '../../applicationTier/models/User.dart';
 
 class IntroPage extends StatelessWidget {
+  const IntroPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final User user = User(
@@ -11,17 +14,18 @@ class IntroPage extends StatelessWidget {
       fullname: '',
       password: '',
       confirmPassword: '',
+      name: '',
       phoneNumber: '',
       age: 0,
       educationalLevel: '',
       jobStatus: '',
       fieldOfInterests: '',
-    );  
+    );
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/assets/bb.png'),
                 fit: BoxFit.cover,
@@ -31,9 +35,9 @@ class IntroPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
+              const Spacer(),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Text(
                   'Welcome to Career Compass, We will help you find your suitable job',
                   style: TextStyle(
@@ -50,7 +54,8 @@ class IntroPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage(user: user)),
+                      MaterialPageRoute(
+                          builder: (context) => LoginPage(user: user)),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -58,7 +63,6 @@ class IntroPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     minimumSize: Size(300, 50),
-                    
                     padding: EdgeInsets.symmetric(vertical: 15),
                     textStyle: TextStyle(
                       color: Colors.white,
@@ -66,7 +70,7 @@ class IntroPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: Text('Register'),
+                  child: const Text('Register'),
                 ),
               ),
               Padding(
@@ -75,10 +79,11 @@ class IntroPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AdminDashboardPage()),
+                      MaterialPageRoute(
+                          builder: (context) => AdminDashboardPage()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Admin Registration ',
                     style: TextStyle(
                       fontSize: 20,

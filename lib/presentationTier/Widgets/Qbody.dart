@@ -21,7 +21,7 @@ class QuestionsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/assets/ew3a.png'),
           fit: BoxFit.cover,
@@ -33,8 +33,8 @@ class QuestionsBody extends StatelessWidget {
           children: [
             Container(
               width: 300,
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(top: 20),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.9),
                 borderRadius: BorderRadius.circular(20),
@@ -43,7 +43,7 @@ class QuestionsBody extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -53,16 +53,16 @@ class QuestionsBody extends StatelessWidget {
                   Text(
                     questions[questionIndex],
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ...options[questionIndex].map(
                     (answer) => GestureDetector(
                       onTap: () => answerQuestion(answer),
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 10),
+                        margin: const EdgeInsets.only(bottom: 10),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
+                          gradient: const LinearGradient(
                             colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -71,7 +71,7 @@ class QuestionsBody extends StatelessWidget {
                           title: Text(
                             answer,
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
@@ -80,32 +80,32 @@ class QuestionsBody extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back, size: 24),
+                  icon: const Icon(Icons.arrow_back, size: 24),
                   onPressed: previousQuestion,
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 IconButton(
-                  icon: Icon(Icons.arrow_forward, size: 24),
+                  icon: const Icon(Icons.arrow_forward, size: 24),
                   onPressed: nextQuestion,
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (questionIndex == questions.length - 1)
               ElevatedButton(
                 onPressed: nextQuestion,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF3B52BB),
+                  backgroundColor: const Color(0xFF3B52BB),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Text(
                     'GO!',

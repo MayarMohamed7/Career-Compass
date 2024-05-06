@@ -32,12 +32,12 @@ void showChangesSavedDialog(BuildContext context) {
               ),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MySkillsPage()));
+                  Navigator.pop(context);
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Adjust padding here
                   child: Text(
-                    'Go to skills page',
+                    'Ok',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

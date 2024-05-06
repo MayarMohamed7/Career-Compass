@@ -5,6 +5,8 @@ import 'package:graduationinterface/presentationTier/Pages/login_page.dart';
 import '../../applicationTier/models/User.dart';
 
 class IntroPage extends StatelessWidget {
+  const IntroPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final User user = User(
@@ -23,7 +25,7 @@ class IntroPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/assets/bb.png'),
                 fit: BoxFit.cover,
@@ -33,9 +35,9 @@ class IntroPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
+              const Spacer(),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Text(
                   'Welcome to Career Compass, We will help you find your suitable job',
                   style: TextStyle(
@@ -68,7 +70,7 @@ class IntroPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: Text('Register'),
+                  child: const Text('Register'),
                 ),
               ),
               Padding(
@@ -81,7 +83,7 @@ class IntroPage extends StatelessWidget {
                           builder: (context) => AdminDashboardPage()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Admin Registration ',
                     style: TextStyle(
                       fontSize: 20,

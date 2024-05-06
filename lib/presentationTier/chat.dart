@@ -3,6 +3,8 @@ import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 
 class ChatbotInteractionPage extends StatelessWidget {
+  const ChatbotInteractionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,17 +20,19 @@ class ChatbotInteractionPage extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: ChatbotInterface(),
       ),
-      endDrawer: AppDrawer(),
-      bottomNavigationBar: Footer(),
+      endDrawer: const AppDrawer(),
+      bottomNavigationBar: const Footer(),
     );
   }
 }
 
 class ChatbotInterface extends StatefulWidget {
+  const ChatbotInterface({super.key});
+
   @override
   _ChatbotInterfaceState createState() => _ChatbotInterfaceState();
 }
@@ -40,7 +44,7 @@ class _ChatbotInterfaceState extends State<ChatbotInterface> {
   @override
   void initState() {
     super.initState();
-    _messages.add(ChatMessage(
+    _messages.add(const ChatMessage(
       text: 'How can I help you today?',
       isUser: false,
       isBot: true,
@@ -59,30 +63,30 @@ class _ChatbotInterfaceState extends State<ChatbotInterface> {
             },
           ),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         Row(
           children: [
             Expanded(
               child: TextField(
                 controller: _skillsController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your message',
                   border: OutlineInputBorder(),
                 ),
-                style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+                style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             GestureDetector(
               onTap: () {
                 _sendMessage(_skillsController.text);
               },
               child: Container(
-                padding: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(8.0),
+                decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 201, 112, 217),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.send,
                   color: Colors.white,
                 ),
@@ -101,7 +105,7 @@ class _ChatbotInterfaceState extends State<ChatbotInterface> {
         isUser: true,
       ));
 
-      _messages.add(ChatMessage(
+      _messages.add(const ChatMessage(
         text: 'Career Compass : Response',
         isUser: false,
         isBot: true,
@@ -117,7 +121,7 @@ class ChatMessage extends StatelessWidget {
   final bool isUser;
   final bool isBot;
 
-  ChatMessage({required this.text, required this.isUser, this.isBot = false});
+  const ChatMessage({super.key, required this.text, required this.isUser, this.isBot = false});
 
   @override
   Widget build(BuildContext context) {
@@ -128,32 +132,32 @@ class ChatMessage extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: isUser
-                ? Color.fromARGB(255, 176, 169, 177)
-                : Color.fromARGB(255, 201, 112, 217),
+                ? const Color.fromARGB(255, 176, 169, 177)
+                : const Color.fromARGB(255, 201, 112, 217),
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.3),
                 spreadRadius: 1,
                 blurRadius: 5,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
               if (!isUser && isBot) ...[
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 20.0,
                   backgroundImage: AssetImage('images/assets/8.png'),
                 ),
-                SizedBox(width: 8.0),
+                const SizedBox(width: 8.0),
               ],
               Expanded(
                 child: Text(
                   text,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w400,

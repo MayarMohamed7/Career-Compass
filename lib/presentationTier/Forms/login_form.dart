@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/pages/signup_page.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart'; 
 import 'package:graduationinterface/presentationTier/pages/Optional.dart';
-import 'package:graduationinterface/presentationTier/pages/adminhome.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
 
 class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -15,7 +13,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-AuthMethods _authMethods = AuthMethods();
+final AuthMethods _authMethods = AuthMethods();
 bool _isLoading = false; // Define _isLoading variable
 @override
   Widget build(BuildContext context) {
@@ -25,15 +23,15 @@ bool _isLoading = false; // Define _isLoading variable
       children: [
         TextField(
           controller: _usernameController,
-          decoration: InputDecoration(labelText: 'Username'),
+          decoration: const InputDecoration(labelText: 'Username'),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         TextField(
           controller: _passwordController,
           obscureText: true,
-          decoration: InputDecoration(labelText: 'Password'),
+          decoration: const InputDecoration(labelText: 'Password'),
         ),
-        SizedBox(height: 24.0),
+        const SizedBox(height: 24.0),
         ElevatedButton(
           onPressed: () async {
             setState(() {
@@ -48,7 +46,7 @@ bool _isLoading = false; // Define _isLoading variable
             if (signInResult == null) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => OptionalPage()),
+                MaterialPageRoute(builder: (context) => const OptionalPage()),
               );
               setState(() {
                 _isLoading = false;
@@ -59,7 +57,7 @@ bool _isLoading = false; // Define _isLoading variable
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Sign-in failed: $signInResult"),
-                  duration: Duration(seconds: 5),
+                  duration: const Duration(seconds: 5),
                   backgroundColor: Colors.red,
                 ),
               );
@@ -69,11 +67,18 @@ bool _isLoading = false; // Define _isLoading variable
               });
             }
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF3B52BB),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            minimumSize: const Size(10, 10),
+          ),
           child: _isLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Container(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Center(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: const Center(
                     child: Text(
                       'Login',
                       style: TextStyle(
@@ -84,21 +89,14 @@ bool _isLoading = false; // Define _isLoading variable
                     ),
                   ),
                 ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF3B52BB),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-            ),
-            minimumSize: Size(10, 10),
-          ),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         GestureDetector(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SignupPage()));
+                context, MaterialPageRoute(builder: (context) => const SignupPage()));
           },
-          child: Center(
+          child: const Center(
             child: Text(
               'Don\'t have an account? Sign up',
               style: TextStyle(

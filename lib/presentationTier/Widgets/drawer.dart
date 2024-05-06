@@ -9,6 +9,8 @@ import 'package:graduationinterface/presentationTier/Pages/Optional.dart';
 import 'package:graduationinterface/applicationTier/Repositories/user_repository.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
 class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -17,6 +19,9 @@ class AppDrawer extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -26,33 +31,30 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ],
               ),
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 255, 255),
-              ),
             ),
             ListTile(
-              leading: Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)),
-              title: Text('New Chat', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              leading: const Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)),
+              title: const Text('New Chat', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChatbotInteractionPage()),
+                  MaterialPageRoute(builder: (context) => const ChatbotInteractionPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.history_edu, color: Color.fromARGB(255, 140, 22, 183)),
-              title: Text('History', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              leading: const Icon(Icons.history_edu, color: Color.fromARGB(255, 140, 22, 183)),
+              title: const Text('History', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChatHistoryPage()),
+                  MaterialPageRoute(builder: (context) => const ChatHistoryPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_box, color: Color.fromARGB(255, 140, 22, 183)),
-              title: Text('Account', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              leading: const Icon(Icons.account_box, color: Color.fromARGB(255, 140, 22, 183)),
+              title: const Text('Account', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.push(
                   context,
@@ -83,8 +85,8 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.auto_awesome, color: Color.fromARGB(255, 140, 22, 183)), // Add an appropriate icon for Recommender
-              title: Text('Recommender', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              leading: const Icon(Icons.auto_awesome, color: Color.fromARGB(255, 140, 22, 183)), // Add an appropriate icon for Recommender
+              title: const Text('Recommender', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.push(
                   context,
@@ -93,8 +95,8 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.exit_to_app, color:Color.fromARGB(255, 140, 22, 183)),
-              title: Text('Sign Out', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              leading: const Icon(Icons.exit_to_app, color:Color.fromARGB(255, 140, 22, 183)),
+              title: const Text('Sign Out', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 AuthMethods().signOut();
                 Navigator.push(

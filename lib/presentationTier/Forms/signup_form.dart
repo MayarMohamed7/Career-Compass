@@ -5,6 +5,8 @@ import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
 import 'package:graduationinterface/applicationTier/models/User.dart';
 
 class SignupForm extends StatefulWidget {
+  const SignupForm({super.key});
+
   @override
   _SignupFormState createState() => _SignupFormState();
 }
@@ -46,17 +48,17 @@ class _SignupFormState extends State<SignupForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 40.0),
+        const SizedBox(height: 40.0),
         TextField(
           controller: _fullNameController,
-          decoration: InputDecoration(labelText: 'Full Name'),
+          decoration: const InputDecoration(labelText: 'Full Name'),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         TextField(
           controller: _emailController,
-          decoration: InputDecoration(labelText: 'Email Address'),
+          decoration: const InputDecoration(labelText: 'Email Address'),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         TextField(
           controller: _passwordController,
           obscureText: !_passwordVisible,
@@ -69,7 +71,7 @@ class _SignupFormState extends State<SignupForm> {
             ),
           ),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         TextField(
           controller: _confirmPasswordController,
           obscureText: !_confirmPasswordVisible,
@@ -83,7 +85,7 @@ class _SignupFormState extends State<SignupForm> {
             ),
           ),
         ),
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
         ElevatedButton(
           onPressed: () async {
             if (_passwordController.text != _confirmPasswordController.text) {
@@ -120,18 +122,18 @@ class _SignupFormState extends State<SignupForm> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Sign-up failed: $signUpResult"),
-                  duration: Duration(seconds: 5),
+                  duration: const Duration(seconds: 5),
                 ),
               );
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF3B52BB), // Background color
+            backgroundColor: const Color(0xFF3B52BB), // Background color
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          child: Padding(
+          child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: _isLoading
                 ? CircularProgressIndicator(color: Colors.white)
@@ -145,12 +147,12 @@ class _SignupFormState extends State<SignupForm> {
                   ),
           ),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Center(
+          child: const Center(
             child: Text(
               'Already have an account? Sign in',
               style: TextStyle(

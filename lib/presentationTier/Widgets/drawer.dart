@@ -6,6 +6,7 @@ import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/presentationTier/Pages/MySkills.dart';
 import 'package:graduationinterface/presentationTier/Pages/Recommedner.dart' ;
 import 'package:graduationinterface/presentationTier/Pages/Optional.dart'; 
+import 'package:graduationinterface/presentationTier/Pages/feedback_user.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -75,6 +76,16 @@ class AppDrawer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => OptionalPage()), 
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)), 
+              title: Text('Rate', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => feedback_user()), 
                 );
               },
             ),

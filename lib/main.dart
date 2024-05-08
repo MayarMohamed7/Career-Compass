@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/presentationTier/Pages/chat.dart';
 import 'package:graduationinterface/presentationTier/Pages/intro.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
-import 'package:graduationinterface/presentationTier/Pages/Optional.dart'; 
+import 'package:graduationinterface/presentationTier/Pages/Optional.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart'; 
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +12,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
 
   runApp(const MyApp());
 }

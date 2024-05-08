@@ -15,7 +15,7 @@ class MySkillsPage extends StatefulWidget {
 class _MySkillsPageState extends State<MySkillsPage> {
   List<Skill> skills = [];
   final FirestoreMethods _firestoreMethods = FirestoreMethods();
-  
+
   @override
   void initState() {
     super.initState();
@@ -23,7 +23,8 @@ class _MySkillsPageState extends State<MySkillsPage> {
   }
 
   Future<void> fetchAndSetSkills() async {
-    List<Skill> fetchedSkills = await _firestoreMethods.fetchSkillsFromFirestore();
+    List<Skill> fetchedSkills =
+        await _firestoreMethods.fetchSkillsFromFirestore();
     setState(() {
       skills = fetchedSkills;
     });
@@ -42,7 +43,7 @@ class _MySkillsPageState extends State<MySkillsPage> {
         ),
         title: const Text('My Skills'),
       ),
-      endDrawer: const AppDrawer(),
+      endDrawer: AppDrawer(),
       body: Stack(
         children: [
           Container(
@@ -75,16 +76,19 @@ class _MySkillsPageState extends State<MySkillsPage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const SkillsPage()),
+                            MaterialPageRoute(
+                                builder: (context) => SkillsPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 119, 136, 235),
+                          backgroundColor:
+                              const Color.fromARGB(255, 119, 136, 235),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
                         ),
-                        child: const Icon(Icons.add, size: 24, color: Colors.white),
+                        child: const Icon(Icons.add,
+                            size: 24, color: Colors.white),
                       ),
                     ],
                   ),
@@ -96,12 +100,16 @@ class _MySkillsPageState extends State<MySkillsPage> {
                   itemCount: skills.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 5),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
                           gradient: const LinearGradient(
-                            colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
+                            colors: [
+                              Colors.blueAccent,
+                              Color.fromARGB(255, 201, 112, 217)
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -113,28 +121,29 @@ class _MySkillsPageState extends State<MySkillsPage> {
                           ),
                           trailing: IconButton(
                             icon: const Icon(Icons.close, color: Colors.white),
-                            onPressed: () async{
+                            onPressed: () async {
                               Skill removedSkill = skills.removeAt(index);
-                          setState(() {});
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Removed Skill: ${removedSkill.name}'),
-                                    duration: const Duration(seconds: 10),
-                                    action: SnackBarAction(
-                                      label: 'Undo',
-                                      
-                                      onPressed: () async{
-
-                                        setState(() {
-                                          skills.insert(index, removedSkill);
-                                        });
-                                        await _firestoreMethods.saveSkillToFirestore([removedSkill.name]);
-                                      },
-                                    ),
+                              setState(() {});
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Removed Skill: ${removedSkill.name}'),
+                                  duration: const Duration(seconds: 10),
+                                  action: SnackBarAction(
+                                    label: 'Undo',
+                                    onPressed: () async {
+                                      setState(() {
+                                        skills.insert(index, removedSkill);
+                                      });
+                                      await _firestoreMethods
+                                          .saveSkillToFirestore(
+                                              [removedSkill.name]);
+                                    },
                                   ),
-                                );
-                                await _firestoreMethods.removeSkillFromFirestore(removedSkill.name);
-                              
+                                ),
+                              );
+                              await _firestoreMethods
+                                  .removeSkillFromFirestore(removedSkill.name);
                             },
                           ),
                         ),
@@ -145,10 +154,9 @@ class _MySkillsPageState extends State<MySkillsPage> {
               ],
             ),
           ),
-   
-        ],  
-      ), 
-      bottomNavigationBar: const Footer(),
+        ],
+      ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

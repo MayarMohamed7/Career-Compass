@@ -21,10 +21,12 @@ class Footer extends StatelessWidget {
         child: IconButton(
           icon: const Icon(
             Icons.home_rounded,
-            color: Color.fromARGB(255, 201, 112, 217), // Set icon color to purple
+            color:
+                Color.fromARGB(255, 201, 112, 217), // Set icon color to purple
           ),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const OptionalPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => OptionalPage()));
           },
         ),
       ),

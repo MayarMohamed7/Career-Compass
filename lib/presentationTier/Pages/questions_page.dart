@@ -10,7 +10,7 @@ class QuestionsPage extends StatefulWidget {
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
- int _questionIndex = 0;
+  int _questionIndex = 0;
   final List<String> _questions = [
     'Are you satisfied with your current job?',
     'Would you consider yourself proficient in web development?',
@@ -29,7 +29,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
       if (_questionIndex < _questions.length - 1) {
         _questionIndex++;
       } else {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const OptionalPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => OptionalPage()));
       }
     });
   }

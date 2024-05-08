@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/pages/signup_page.dart';
-import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart'; 
+import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
 import 'package:graduationinterface/presentationTier/pages/Optional.dart';
 
 class LoginForm extends StatefulWidget {
@@ -13,9 +13,9 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-final AuthMethods _authMethods = AuthMethods();
-bool _isLoading = false; // Define _isLoading variable
-@override
+  final AuthMethods _authMethods = AuthMethods();
+  bool _isLoading = false; // Define _isLoading variable
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -39,14 +39,15 @@ bool _isLoading = false; // Define _isLoading variable
             });
             String? signInResult =
                 await _authMethods.signInWithEmailAndPassword(
-              email: _usernameController.text, // Use _usernameController instead of _emailController
+              email: _usernameController
+                  .text, // Use _usernameController instead of _emailController
               password: _passwordController.text,
             );
 
             if (signInResult == null) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const OptionalPage()),
+                MaterialPageRoute(builder: (context) => OptionalPage()),
               );
               setState(() {
                 _isLoading = false;
@@ -94,7 +95,7 @@ bool _isLoading = false; // Define _isLoading variable
         GestureDetector(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const SignupPage()));
+                context, MaterialPageRoute(builder: (context) => SignupPage()));
           },
           child: const Center(
             child: Text(

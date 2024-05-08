@@ -24,7 +24,7 @@ class SystemConfigurationPage extends StatelessWidget {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const AdminDashboardPage()),
+              MaterialPageRoute(builder: (context) => AdminDashboardPage()),
             );
           },
         ),
@@ -37,7 +37,7 @@ class SystemConfigurationPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/assets/boo.png'), 
+                image: AssetImage('images/assets/boo.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -57,95 +57,94 @@ class SystemConfigurationPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24.0),
-
                 Card(
-                elevation: 5.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        'System Settings',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3B52BB), 
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text(
+                          'System Settings',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF3B52BB),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12.0),
-                      
-                      TextFormField(
-                        decoration: const InputDecoration(labelText: 'System Setting 1'),
-                      ),
-                      const SizedBox(height: 8.0),
-                      TextFormField(
-                        decoration: const InputDecoration(labelText: 'System Setting 2'),
-                      ),
-                    ],
+                        const SizedBox(height: 12.0),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: 'System Setting 1'),
+                        ),
+                        const SizedBox(height: 8.0),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: 'System Setting 2'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-
-              Card(
-                elevation: 5.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        'Chatbot Behavior',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3B52BB), 
+                const SizedBox(height: 16.0),
+                Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text(
+                          'Chatbot Behavior',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF3B52BB),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12.0),
-                      SwitchListTile(
-                        title: const Text('Enable Chatbot'),
-                        value: true,
-                        onChanged: (value) {
-                        },
-                      ),
-                      TextFormField(
-                        decoration: const InputDecoration(labelText: 'Chatbot Setting 1'),
-                      ),
-                    ],
+                        const SizedBox(height: 12.0),
+                        SwitchListTile(
+                          title: const Text('Enable Chatbot'),
+                          value: true,
+                          onChanged: (value) {},
+                        ),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: 'Chatbot Setting 1'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-              Card(
-                elevation: 5.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        'Recommendation Criteria',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color:  Color(0xFF3B52BB), 
+                const SizedBox(height: 16.0),
+                Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text(
+                          'Recommendation Criteria',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF3B52BB),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12.0),
-                      
-                      TextFormField(
-                        decoration: const InputDecoration(labelText: 'Criteria 1'),
-                      ),
-                      TextFormField(
-                        decoration: const InputDecoration(labelText: 'Criteria 2'),
-                      ),
-                      
-                    ],
+                        const SizedBox(height: 12.0),
+                        TextFormField(
+                          decoration:
+                              const InputDecoration(labelText: 'Criteria 1'),
+                        ),
+                        TextFormField(
+                          decoration:
+                              const InputDecoration(labelText: 'Criteria 2'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
               ],
             ),
           ),

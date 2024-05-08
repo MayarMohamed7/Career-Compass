@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 240),

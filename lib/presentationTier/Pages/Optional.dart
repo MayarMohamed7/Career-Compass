@@ -4,12 +4,11 @@ import 'package:graduationinterface/presentationTier/Pages/chat.dart';
 import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 
-
 class OptionalPage extends StatelessWidget {
   final double buttonHeight;
   final double buttonWidth;
 
-  const OptionalPage({super.key, 
+  OptionalPage({
     this.buttonHeight = 250,
     this.buttonWidth = 300,
   });
@@ -58,7 +57,11 @@ class OptionalPage extends StatelessWidget {
                 'Skills Entry',
                 buttonHeight,
                 buttonWidth,
-                () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SkillsPage())), // Navigate to Skills Page
+                () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            SkillsPage())), // Navigate to Skills Page
               ),
               const SizedBox(height: 10),
               buttonWithImageAndText(
@@ -67,7 +70,11 @@ class OptionalPage extends StatelessWidget {
                 'Chat-Bot',
                 buttonHeight,
                 buttonWidth,
-                () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChatbotInteractionPage())), // Navigate to Chat Bot Page
+                () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            PredictJob())), // Navigate to Chat Bot Page
               ),
             ],
           ),
@@ -77,7 +84,8 @@ class OptionalPage extends StatelessWidget {
     );
   }
 
-  Widget buttonWithImageAndText(BuildContext context, String imagePath, String buttonText, double height, double width, VoidCallback onPressed) {
+  Widget buttonWithImageAndText(BuildContext context, String imagePath,
+      String buttonText, double height, double width, VoidCallback onPressed) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.0),
       child: Container(
@@ -97,7 +105,8 @@ class OptionalPage extends StatelessWidget {
         ),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-           backgroundColor: const Color.fromARGB(255, 201, 112, 217), // Background color
+            backgroundColor:
+                Color.fromARGB(255, 201, 112, 217), // Background color
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),

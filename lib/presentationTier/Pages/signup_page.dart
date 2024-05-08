@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/forms/signup_form.dart';
 import 'package:graduationinterface/applicationTier/models/User.dart';
-//signUp Form 
+
+//signUp Form
 class SignupPage extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class SignupPage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

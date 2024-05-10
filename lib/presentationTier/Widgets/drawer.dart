@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
+import 'package:graduationinterface/presentationTier/Pages/Userpost.dart';
+import 'package:graduationinterface/presentationTier/Pages/adminfeeds.dart';
 import 'package:graduationinterface/presentationTier/Pages/chatHistory_page.dart';
+import 'package:graduationinterface/presentationTier/Pages/mayar.dart';
 import 'package:graduationinterface/presentationTier/forms/profile_page.dart';
 import 'package:graduationinterface/presentationTier/Pages/chat.dart';
 import 'package:graduationinterface/presentationTier/Pages/intro.dart';
@@ -32,31 +35,7 @@ class AppDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            ListTile(
-              leading:
-                  Icon(Icons.message, color: Color.fromARGB(255, 140, 22, 183)),
-              title: Text('Predict Your Job',
-                  style: TextStyle(color: Color.fromARGB(255, 140, 22, 183))),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PredictJob()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.history_edu,
-                  color: Color.fromARGB(255, 140, 22, 183)),
-              title: Text('History',
-                  style: TextStyle(color: Color.fromARGB(255, 140, 22, 183))),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ChatHistoryPage()),
-                );
-              },
-            ),
+            
             ListTile(
               leading: Icon(Icons.account_box,
                   color: Color.fromARGB(255, 140, 22, 183)),
@@ -67,6 +46,34 @@ class AppDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProfilePage(),
+                  ),
+                );
+              },
+            ),
+            
+              ListTile(
+              leading:
+                  Icon(Icons.engineering, color: Color.fromARGB(255, 140, 22, 183)),
+              title: Text('Predict Your Job',
+                  style: TextStyle(color: Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PredictJob()),
+                );
+              },
+            ),
+            
+            ListTile(
+              leading: Icon(Icons.star_half_sharp,
+                  color: Color.fromARGB(255, 140, 22, 183)),
+              title: Text('Feedback',
+                  style: TextStyle(color: Color.fromARGB(255, 140, 22, 183))),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => feedbacks(),
                   ),
                 );
               },
@@ -86,33 +93,18 @@ class AppDrawer extends StatelessWidget {
                 );
               },
             ),
+         
             ListTile(
-              leading:
-                  Icon(Icons.home, color: Color.fromARGB(255, 140, 22, 183)),
-              title: Text('Home',
-                  style: TextStyle(color: Color.fromARGB(255, 140, 22, 183))),
+              leading: Icon(Icons.announcement, color: Color.fromARGB(255, 140, 22, 183)), 
+              title: Text('Post', style: TextStyle(color:Color.fromARGB(255, 140, 22, 183))),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => OptionalPage()),
+                  MaterialPageRoute(builder: (context) => UserPostsPage()), 
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.auto_awesome,
-                  color: Color.fromARGB(255, 140, 22,
-                      183)), // Add an appropriate icon for Recommender
-              title: Text('Recommender',
-                  style: TextStyle(color: Color.fromARGB(255, 140, 22, 183))),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          RecommenderPage()), // Navigate to the RecommenderPage
-                );
-              },
-            ),
+            
             ListTile(
               leading: Icon(Icons.exit_to_app,
                   color: Color.fromARGB(255, 140, 22, 183)),

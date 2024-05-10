@@ -33,17 +33,19 @@ class _MySkillsPageState extends State<MySkillsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+     appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'images/assets/NiceJob.png',
+              height: 140,
+            ),
+          ],
         ),
-        title: const Text('My Skills'),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: Stack(
         children: [
           Container(

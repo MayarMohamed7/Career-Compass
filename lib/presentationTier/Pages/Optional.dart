@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/Skills_page.dart';
+import 'package:graduationinterface/presentationTier/Pages/Userpost.dart';
 import 'package:graduationinterface/presentationTier/Pages/chat.dart';
 import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
@@ -54,27 +55,27 @@ class OptionalPage extends StatelessWidget {
               buttonWithImageAndText(
                 context,
                 'images/assets/222.png',
-                'Skills Entry',
+                'Get your job',
                 buttonHeight,
                 buttonWidth,
                 () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            SkillsPage())), // Navigate to Skills Page
+                            PredictJob())), // Navigate to Skills Page
               ),
               const SizedBox(height: 10),
               buttonWithImageAndText(
                 context,
                 'images/assets/111.png',
-                'Chat-Bot',
+                'Posts',
                 buttonHeight,
                 buttonWidth,
                 () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            PredictJob())), // Navigate to Chat Bot Page
+                            UserPostsPage())), // Navigate to Chat Bot Page
               ),
             ],
           ),

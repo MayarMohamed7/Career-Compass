@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/presentationTier/Pages/SystemConfigurationPage.dart';
-import 'package:graduationinterface/presentationTier/Pages/feed.dart';
+import 'package:graduationinterface/applicationTier/services/new_post_page.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
+import 'package:graduationinterface/presentationTier/Pages/feedb.dart';
 import 'package:graduationinterface/presentationTier/Pages/intro.dart';
+import 'package:graduationinterface/presentationTier/Pages/j.dart';
 
 class AppDrawer2 extends StatelessWidget {
   const AppDrawer2({super.key});
@@ -28,37 +30,41 @@ class AppDrawer2 extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading:
-                  const Icon(Icons.settings, color: Color.fromARGB(255, 0, 0, 0)),
-              title: const Text('System Configuration',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading: const Icon(Icons.settings, color: Color(0xFF004AAD)),
+              title: const Text('Manage Users', style: TextStyle(color: Color(0xFF004AAD))),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const SystemConfigurationPage()),
+                  MaterialPageRoute(builder: (context) => UserManagementPage()),
                 );
               },
             ),
             ListTile(
-              leading:
-                  const Icon(Icons.bar_chart, color: Color.fromARGB(255, 0, 0, 0)),
-              title: const Text('Feedback Analysis',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading: const Icon(Icons.article, color: Color(0xFF004AAD)),
+              title: const Text('Manage Posts', style: TextStyle(color: Color(0xFF004AAD))),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const FeedbackAnalysisPage()),
+                  MaterialPageRoute(builder: (context) => NewPostPage()),
                 );
               },
             ),
             ListTile(
-              leading:
-                  const Icon(Icons.exit_to_app, color: Color.fromARGB(255, 0, 0, 0)),
-              title: const Text('Sign Out',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+              leading: const Icon(Icons.bar_chart, color: Color(0xFF004AAD)),
+              title: const Text('Feedback Analysis', style: TextStyle(color: Color(0xFF004AAD))),
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => AdminFeedbackPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.exit_to_app, color: Color(0xFF004AAD)),
+              title: const Text('Sign Out', style: TextStyle(color: Color(0xFF004AAD))),
+              onTap: () 
+              {
+                AuthMethods().signOut();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const IntroPage()),

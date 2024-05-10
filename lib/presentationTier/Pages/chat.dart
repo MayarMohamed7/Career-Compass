@@ -1,7 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
+import 'package:graduationinterface/presentationTier/widgets/footer.dart';
 
 class PredictJob extends StatefulWidget {
   @override
@@ -43,77 +44,87 @@ class _PredictJobState extends State<PredictJob> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 201, 112, 217), // Background color from the previous sized box
-        title: Center(
-          child: Image.asset(
-            'images/assets/NiceJob.png', // Image from the second page
-            height: 95,
-          ),
-        ),
-        shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 201, 112, 217))), // Same color as the app bar background
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TextField(
-                      controller: _skillsController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your skills',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: const Color.fromARGB(255, 201, 112, 217)), // Same color as the app bar background
-                        ),
-                      ),
-                      style: TextStyle(fontSize: 18), // Increase text size
-                      maxLines: null, // Allow multiple lines for the text field
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: _isLoading ? null : predictJob,
-                    child: _isLoading
-                        ? CircularProgressIndicator()
-                        : Text(
-                            'Predict Job',
-                            style: TextStyle(
-                              color: Colors.white, // White text color
-                              fontSize: 18, // Increase text size
-                              fontWeight: FontWeight.bold, // Bold text
-                            ),
-                          ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 201, 112, 217), // Background color from the previous sized box
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    height: 250,
-                    width: 300,
-                    child: Image.asset(
-                      'images/assets/fly.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'Predicted Job: ${_jobController.text}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            Image.asset(
+              'images/assets/NiceJob.png',
+              height: 140,
             ),
           ],
         ),
       ),
+      endDrawer: const AppDrawer(), 
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/assets/ew3a.png"), // Path to your background image
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Job Recommender',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: _skillsController,
+                decoration: InputDecoration(
+                  hintText: 'Enter your skills',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Rounded corners
+                    borderSide: BorderSide(color: Colors.black), // Black border
+                  ),
+                  filled: true,
+                  fillColor: Colors.white, // White background
+                  contentPadding: EdgeInsets.all(16.0), // Padding inside text field
+                ),
+                style: TextStyle(fontSize: 18, color: Colors.black), // Text color
+                maxLines: null,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _isLoading ? null : predictJob,
+                child: _isLoading
+                    ? CircularProgressIndicator()
+                    : Text(
+                        'Predict Job',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 201, 112, 217),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12), // Adjust button padding
+                ),
+              ),
+              SizedBox(height: 10),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    'Predicted Job: ${_jobController.text}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: const Footer(),
     );
   }
 }

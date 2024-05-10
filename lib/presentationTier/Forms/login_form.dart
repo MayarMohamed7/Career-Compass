@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationinterface/presentationTier/Pages/dashboard.dart';
 
 import 'package:graduationinterface/presentationTier/Pages/signup_page.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart'; 
@@ -91,7 +92,7 @@ bool _isLoading = false; // Define _isLoading variable
               else if(isAdmin){
                 Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const AdminDashboardPage()),
+                MaterialPageRoute(builder: (context) =>  Dashboard()),
               );
               }
                 }
@@ -101,13 +102,13 @@ bool _isLoading = false; // Define _isLoading variable
             } else {
               print("Sign-in failed: $signInResult");
 
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Sign-in failed: $signInResult"),
-                  duration: const Duration(seconds: 5),
-                  backgroundColor: Colors.red,
-                ),
-              );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Sign-in failed: $signInResult"),
+                        duration: const Duration(seconds: 5),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
 
               setState(() {
                 _isLoading = false;

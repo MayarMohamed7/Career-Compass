@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-
+//profile content class
 class ProfileContent extends StatefulWidget {
   @override
   _ProfileContentState createState() => _ProfileContentState();

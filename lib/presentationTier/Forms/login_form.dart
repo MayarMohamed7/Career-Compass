@@ -1,35 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:graduationinterface/presentationTier/pages/signup_page.dart';
-import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
-import 'package:graduationinterface/presentationTier/pages/Optional.dart';
+
+import 'package:graduationinterface/presentationTier/Pages/signup_page.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart'; 
+import 'package:graduationinterface/presentationTier/Pages/Optional.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
+import 'package:graduationinterface/presentationTier/Pages/adminhome.dart';
+import 'package:graduationinterface/presentationTier/Pages/passReset.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
 }
 
+
 class _LoginFormState extends State<LoginForm> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final AuthMethods _authMethods = AuthMethods();
-  bool _isLoading = false; // Define _isLoading variable
-  @override
+
+  final FirestoreMethods _firestoreMethods = FirestoreMethods();
+bool _isLoading = false; // Define _isLoading variable
+   bool _passwordVisible = false;
+  bool _confirmPasswordVisible = false;
+
+
+  // Function to toggle password and confirm password visibility
+  void _toggleVisibility(bool isPassword) {
+    setState(() {
+      if (isPassword) {
+        _passwordVisible = !_passwordVisible;
+      } else {
+        _confirmPasswordVisible = !_confirmPasswordVisible;
+      }
+    });
+  }
+
+@override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          controller: _usernameController,
-          decoration: const InputDecoration(labelText: 'Username'),
+
+          controller: _emailController,
+          decoration: const InputDecoration(labelText: 'Email'),
+
         ),
         const SizedBox(height: 16.0),
         TextField(
           controller: _passwordController,
-          obscureText: true,
-          decoration: const InputDecoration(labelText: 'Password'),
+          obscureText: !_passwordVisible,
+          decoration: InputDecoration(
+            labelText: 'Password',
+            suffixIcon: IconButton(
+              onPressed: () => _toggleVisibility(true),
+              icon: Icon(
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off),
+            ),
+          ),
+
         ),
         const SizedBox(height: 24.0),
         ElevatedButton(
@@ -39,16 +71,30 @@ class _LoginFormState extends State<LoginForm> {
             });
             String? signInResult =
                 await _authMethods.signInWithEmailAndPassword(
-              email: _usernameController
-                  .text, // Use _usernameController instead of _emailController
+
+              email: _emailController.text, 
+
               password: _passwordController.text,
             );
-
             if (signInResult == null) {
-              Navigator.push(
+                bool isLoggedIn = await  _authMethods.checkAuthenticationStatus(); 
+                if (isLoggedIn)
+                {
+                bool isUser = await  _firestoreMethods.checkIfUserExists(_emailController.text);
+                bool isAdmin = await _firestoreMethods.checkIfAdminExists(_emailController.text);
+                if(isUser){
+                Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => OptionalPage()),
               );
+              }
+              else if(isAdmin){
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AdminDashboardPage()),
+              );
+              }
+                }
               setState(() {
                 _isLoading = false;
               });
@@ -95,7 +141,7 @@ class _LoginFormState extends State<LoginForm> {
         GestureDetector(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SignupPage()));
+                context, MaterialPageRoute(builder: (context) => SignupPage()),);
           },
           child: const Center(
             child: Text(
@@ -107,26 +153,27 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
           ),
+          
+        ),
+        const SizedBox(height: 16.0),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => passwordResetpage()),);
+          },
+          child: const Center(
+            child: Text(
+              'Reset Password',
+              style: TextStyle(
+                color: Color(0xFF3B52BB),
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+          
         ),
       ],
     );
   }
 }
-
-  
-   /* bool isLoggedIn =  await _authMethods.checkAuthenticationStatus();
-         
-            if (isLoggedIn) {
-              bool isUser = await _authMethods.checkIfUserExists(
-                  _emailController.text);
-              bool isAdmin = await _authMethods.checkIfAdminExists(
-                  _emailController.text);*/
-
-             // if (isUser) {
-              /* else if (isAdmin) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AdminDashboardPage()),
-                );
-              }*/

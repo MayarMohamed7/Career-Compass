@@ -7,6 +7,7 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+
 Future<String?> signUpWithEmailAndPassword({
     required String email,
     required String password,
@@ -22,7 +23,6 @@ Future<String?> signUpWithEmailAndPassword({
       ); 
       // Get the user's UID
       String? uid = userCredential.user?.uid;
-
       if (uid != null) {
        
         await _firestore.collection('users').doc(uid).set({
@@ -79,13 +79,16 @@ Future<String?> signUpWithEmailAndPassword({
     await _auth.signOut();
   }
 
+ Future<bool> resetpassword(String email) async {
+  try {
+    await _auth.sendPasswordResetEmail(email: email);
+    return true; 
+  } catch (e) {
+    print(e.toString());
+    return false; 
+  }
+}
+
+
   
   }
-
-  
-  
-
-
-
-  
-

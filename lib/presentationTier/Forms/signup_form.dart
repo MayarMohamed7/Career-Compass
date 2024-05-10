@@ -3,6 +3,8 @@ import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart';
 import 'package:graduationinterface/presentationTier/Pages/creatingacc_page.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
 import 'package:graduationinterface/applicationTier/models/User.dart';
+import 'package:graduationinterface/presentationTier/Pages/login_page.dart';
+
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -150,7 +152,10 @@ class _SignupFormState extends State<SignupForm> {
         const SizedBox(height: 16.0),
         GestureDetector(
           onTap: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
           },
           child: const Center(
             child: Text(

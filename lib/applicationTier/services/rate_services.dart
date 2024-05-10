@@ -1,11 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RateServices 
 {
-   double _currentRating = 3.0;
 
+   double _currentRating = 3.0;
   // Method to get the current rating
   double get currentRating => _currentRating;
 
@@ -13,7 +14,6 @@ class RateServices
   void updateRating(double rating) {
     _currentRating = rating;
     print('Rating updated: $_currentRating');
- 
   }
     Future<void> submitRatingAndComment(double rating, String comment) async {
     try {

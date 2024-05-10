@@ -3,9 +3,8 @@ import 'package:graduationinterface/presentationTier/forms/login_form.dart';
 import 'package:graduationinterface/applicationTier/models/User.dart';
 
 class LoginPage extends StatelessWidget {
-  final User user;
 
-  LoginPage({required this.user});
+  LoginPage({Key? key}) : super(key: key); 
   @override
   Widget build(BuildContext context) {
     return Scaffold(

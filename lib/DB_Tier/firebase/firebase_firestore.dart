@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduationinterface/applicationTier/models/skill.dart';
 
 class FirestoreMethods {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   // Save the skills to Firestore
 
   Future<void> saveSkillToFirestore(List<String> skills) async //for SkillsPage
@@ -41,6 +42,7 @@ class FirestoreMethods {
     }
   }
 
+//save user data entered in creating account !  
   Future<String?> saveUserData({
     required String phoneNumber,
     required String age,
@@ -72,6 +74,7 @@ class FirestoreMethods {
     }
   }
 
+
   Future<List<Skill>> fetchSkillsFromFirestore() async // for MY skills page
   {
     List<Skill> skills = [];
@@ -98,6 +101,7 @@ class FirestoreMethods {
     return skills;
   }
 
+
   Future<void> removeSkillFromFirestore(String skillName) async {
     try {
       String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -121,4 +125,43 @@ class FirestoreMethods {
       print('Error removing skill: $error');
     }
   }
+  
+  Future<bool> checkIfUserExists(String email) async 
+  {
+    try {
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+          
+
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      // Return false if there is an error
+      print('Error checking user existence: $e');
+      return false;
+
+    }
+  } 
+
+    Future<bool> checkIfAdminExists(String email) async {
+    try {
+    
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('admins')
+          .where('email', isEqualTo: email)
+          .get();
+          
+
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      // Return false if there is an error
+      print('Error checking user existence: $e');
+      return false;
+
+    }
+  } 
+
+
 }
+

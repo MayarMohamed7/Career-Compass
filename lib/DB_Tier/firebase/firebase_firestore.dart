@@ -5,7 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduationinterface/applicationTier/models/skill.dart';
 
- class FirestoreMethods {
+class FirestoreMethods {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   // Save the skills to Firestore
 
   Future<void> saveSkillToFirestore(List<String> skills) async  //for SkillsPage 
@@ -38,9 +39,41 @@ import 'package:graduationinterface/applicationTier/models/skill.dart';
       // Handle error
     }
   }
-Future<List<Skill>> fetchSkillsFromFirestore() async // for MY skills page
-{
-  List<Skill> skills = [];
+//save user data entered in creating account !  
+  Future<String?> saveUserData({
+    required String phoneNumber,
+    required String age,
+    required String educationalLevel,
+    required String jobStatus,
+    required String fieldOfInterests,
+  }) async {
+    try {
+      String? userId = FirebaseAuth.instance.currentUser?.uid;
+      if (userId != null) {
+        DocumentReference userDocRef =
+            FirebaseFirestore.instance.collection('userData').doc(userId);
+
+        Map<String, dynamic> userData = {
+          'phoneNumber': phoneNumber,
+          'age': age,
+          'educationalLevel': educationalLevel,
+          'jobStatus': jobStatus,
+          'fieldOfInterests': fieldOfInterests,
+        };
+
+        await userDocRef.set(userData);
+        return null; // Return null to indicate success
+      } else {
+        return 'User not logged in';
+      }
+    } catch (e) {
+      return e.toString(); // Return error message
+    }
+  }
+
+  Future<List<Skill>> fetchSkillsFromFirestore() async // for MY skills page
+  {
+    List<Skill> skills = [];
 
   try {
     String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -73,13 +106,49 @@ Future<void> removeSkillFromFirestore(String skillName) async {
 
         existingSkills.remove(skillName);
 
-        await userDocRef.update({'skills': existingSkills});
+          await userDocRef.update({'skills': existingSkills});
+        }
       }
+    } catch (error) {
+      print('Error removing skill: $error');
     }
-  } catch (error) {
-    print('Error removing skill: $error');
   }
+  
+  Future<bool> checkIfUserExists(String email) async 
+  {
+    try {
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+          
+
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      // Return false if there is an error
+      print('Error checking user existence: $e');
+      return false;
+
+    }
+  } 
+
+    Future<bool> checkIfAdminExists(String email) async {
+    try {
+    
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('admins')
+          .where('email', isEqualTo: email)
+          .get();
+          
+
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      // Return false if there is an error
+      print('Error checking user existence: $e');
+      return false;
+
+    }
+  } 
+
+
 }
- }
- 
- 

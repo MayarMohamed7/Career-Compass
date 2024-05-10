@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/forms/signup_form.dart';
 import 'package:graduationinterface/applicationTier/models/User.dart';
-//signUp Form 
+
+//signUp Form
 class SignupPage extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class SignupPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/assets/back.signup.png'),
             fit: BoxFit.cover,
@@ -40,7 +40,7 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: EdgeInsets.all(15.0),
                 child: SignupForm(),
               ),
             ],

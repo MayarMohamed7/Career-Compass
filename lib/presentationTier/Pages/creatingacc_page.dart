@@ -8,31 +8,29 @@ import 'package:graduationinterface/DB_Tier/firebase/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:typed_data';
 
-
 class CreatingAccPage extends StatefulWidget {
   @override
   _CreatingAccPageState createState() => _CreatingAccPageState();
 }
-class _CreatingAccPageState extends State<CreatingAccPage>
-{
 
+class _CreatingAccPageState extends State<CreatingAccPage> {
   FirestoreMethods _firestoreMethods = FirestoreMethods();
   CustomImagePicker _customImagePicker = CustomImagePicker();
   Uint8List? _image;
+
   FirebaseAuth _auth = FirebaseAuth.instance;
   StorageMethods _storageMethods = StorageMethods();
+
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
-  final TextEditingController selectedEducationalLevel = TextEditingController();
+  final TextEditingController selectedEducationalLevel =
+      TextEditingController();
   final TextEditingController selectedJobStatus = TextEditingController();
-  final TextEditingController selectedFieldOfInterests = TextEditingController();
-
-
-  
- 
-
+  final TextEditingController selectedFieldOfInterests =
+      TextEditingController();
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +46,7 @@ class _CreatingAccPageState extends State<CreatingAccPage>
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/assets/signn.png'),
             fit: BoxFit.cover,
@@ -88,7 +86,7 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                       child: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.blue,
                         ),
@@ -96,6 +94,7 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               child: ListTile(
+
                                 leading: const Icon(Icons.camera_alt),
                                 title: const Text('Camera'),
                                 onTap: () async {
@@ -106,10 +105,10 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                                     setState(() {
                                       _image = image;
                                     });
-                                        }
-                                      },
-                                    ),
-                                  ),
+                                  }
+                                },
+                              ),
+                            ),
                             PopupMenuItem(
                               child: ListTile(
                                 leading: const Icon(Icons.photo_library),
@@ -127,7 +126,9 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                               ),
                             ),
                           ],
+
                           icon: const Icon(
+
                             Icons.camera_alt_rounded,
                             color: Colors.white,
                           ),
@@ -148,6 +149,7 @@ class _CreatingAccPageState extends State<CreatingAccPage>
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () async {
+
                     if (_image != null) {
       // Upload image to Firebase Storage
       String imageURL = await _storageMethods.uploadImageToStorage(
@@ -155,6 +157,7 @@ class _CreatingAccPageState extends State<CreatingAccPage>
         _image!,
       );
                     }
+
 
                   String? res = await _firestoreMethods.saveUserData(
                     phoneNumber: phoneNumberController.text,
@@ -172,13 +175,15 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Error creating account: $res'),
-                        duration: const Duration(seconds: 2),
+
+                        duration: Duration(seconds: 2),
                         backgroundColor: Colors.red,
                       ),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
+
                   backgroundColor: const Color(0xFF3B52BB),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),

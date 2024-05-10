@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Widgets/draweradmin.dart';
 
 class AdminDashboardPage extends StatelessWidget {
+  const AdminDashboardPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -18,9 +20,9 @@ class AdminDashboardPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: false, 
       ),
-      endDrawer: AppDrawer2(),
+      endDrawer: const AppDrawer2(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/assets/boo.png'), 
             fit: BoxFit.cover,
@@ -33,7 +35,7 @@ class AdminDashboardPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
+                const Text(
                   'Welcome, Admin!',
                   style: TextStyle(
                     fontSize: 24.0,
@@ -41,18 +43,18 @@ class AdminDashboardPage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Container(
                   height: 200.0,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage('images/assets/trophy.png'),
                       fit: BoxFit.fitHeight,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
 
                 Card(
                   elevation: 5.0,
@@ -61,15 +63,15 @@ class AdminDashboardPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
+                        const Text(
                           'Monitoring Tools',
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 12.0),
-                        ListTile(
+                        const SizedBox(height: 12.0),
+                        const ListTile(
                           leading: Icon(
                             Icons.timeline,
                             color: Color(0xFF3B52BB),
@@ -82,7 +84,7 @@ class AdminDashboardPage extends StatelessWidget {
                             'Track user interactions and engagement in real-time.',
                           ),
                         ),
-                        ListTile(
+                        const ListTile(
                           leading: Icon(
                             Icons.error,
                             color: Color(0xFF3B52BB),
@@ -99,13 +101,13 @@ class AdminDashboardPage extends StatelessWidget {
                           onPressed: () {
                         
                           },
-                          child: Text('Show More'),
+                          child: const Text('Show More'),
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Card(
                   elevation: 5.0,
                   child: Padding(
@@ -113,19 +115,19 @@ class AdminDashboardPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
+                        const Text(
                           'Analytics',
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 12.0),
+                        const SizedBox(height: 12.0),
                         GridView.count(
                           crossAxisCount: 2,
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: const [
                             AnalyticsPhoto(imagePath: 'images/assets/ONE.png'),
                             AnalyticsPhoto(imagePath: 'images/assets/TWO.png'),
                             AnalyticsPhoto(imagePath: 'images/assets/THREE.png'),
@@ -136,13 +138,13 @@ class AdminDashboardPage extends StatelessWidget {
                           onPressed: () {
                            
                           },
-                          child: Text('Show More'),
+                          child: const Text('Show More'),
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
 
                 Card(
                   elevation: 5.0,
@@ -151,15 +153,15 @@ class AdminDashboardPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
+                        const Text(
                           'Configuration Options',
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 12.0),
-                        ListTile(
+                        const SizedBox(height: 12.0),
+                        const ListTile(
                           leading: Icon(
                             Icons.settings,
                             color: Color(0xFF3B52BB),
@@ -172,7 +174,7 @@ class AdminDashboardPage extends StatelessWidget {
                             'Configure chatbot responses and behavior.',
                           ),
                         ),
-                        ListTile(
+                        const ListTile(
                           leading: Icon(
                             Icons.build,
                             color: Color(0xFF3B52BB),
@@ -188,7 +190,7 @@ class AdminDashboardPage extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                           },
-                          child: Text('Show More'),
+                          child: const Text('Show More'),
                         ),
                       ],
                     ),
@@ -206,7 +208,7 @@ class AdminDashboardPage extends StatelessWidget {
 class AnalyticsPhoto extends StatelessWidget {
   final String imagePath;
 
-  AnalyticsPhoto({required this.imagePath});
+  const AnalyticsPhoto({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {

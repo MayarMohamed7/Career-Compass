@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/adminhome.dart';
-import 'package:graduationinterface/presentationTier/Pages/login_page.dart';
-import 'package:graduationinterface/applicationTier/models/User.dart';
+import 'package:graduationinterface/presentationTier/Pages/signup_page.dart';
+
 
 class IntroPage extends StatelessWidget {
+  const IntroPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final User user = User(
-      email: '',
-      fullname: '',
-      password: '',
-      confirmPassword: '',
-      phoneNumber: '',
-      age: 0,
-      educationalLevel: '',
-      jobStatus: '',
-      fieldOfInterests: '',
-    );  
+    
     return Scaffold(
       body: Stack(
         children: [
@@ -50,7 +42,8 @@ class IntroPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage(user: user)),
+                      MaterialPageRoute(
+                          builder: (context) => SignupPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -69,25 +62,7 @@ class IntroPage extends StatelessWidget {
                   child: Text('Register'),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AdminDashboardPage()),
-                    );
-                  },
-                  child: Text(
-                    'Admin Registration ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
+
             ],
           ),
         ],

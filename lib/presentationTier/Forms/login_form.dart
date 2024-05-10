@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:graduationinterface/presentationTier/Pages/signup_page.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_auth.dart'; 
 import 'package:graduationinterface/presentationTier/Pages/Optional.dart';
@@ -18,6 +19,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final AuthMethods _authMethods = AuthMethods();
+
   final FirestoreMethods _firestoreMethods = FirestoreMethods();
 bool _isLoading = false; // Define _isLoading variable
    bool _passwordVisible = false;
@@ -42,10 +44,12 @@ bool _isLoading = false; // Define _isLoading variable
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
+
           controller: _emailController,
           decoration: const InputDecoration(labelText: 'Email'),
+
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         TextField(
           controller: _passwordController,
           obscureText: !_passwordVisible,
@@ -57,8 +61,9 @@ bool _isLoading = false; // Define _isLoading variable
                   _passwordVisible ? Icons.visibility : Icons.visibility_off),
             ),
           ),
+
         ),
-        SizedBox(height: 24.0),
+        const SizedBox(height: 24.0),
         ElevatedButton(
           onPressed: () async {
             setState(() {
@@ -66,7 +71,9 @@ bool _isLoading = false; // Define _isLoading variable
             });
             String? signInResult =
                 await _authMethods.signInWithEmailAndPassword(
+
               email: _emailController.text, 
+
               password: _passwordController.text,
             );
             if (signInResult == null) {
@@ -97,7 +104,7 @@ bool _isLoading = false; // Define _isLoading variable
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Sign-in failed: $signInResult"),
-                  duration: Duration(seconds: 5),
+                  duration: const Duration(seconds: 5),
                   backgroundColor: Colors.red,
                 ),
               );
@@ -107,11 +114,18 @@ bool _isLoading = false; // Define _isLoading variable
               });
             }
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF3B52BB),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            minimumSize: const Size(10, 10),
+          ),
           child: _isLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Container(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Center(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: const Center(
                     child: Text(
                       'Login',
                       style: TextStyle(
@@ -122,21 +136,14 @@ bool _isLoading = false; // Define _isLoading variable
                     ),
                   ),
                 ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF3B52BB),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-            ),
-            minimumSize: Size(10, 10),
-          ),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         GestureDetector(
           onTap: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => SignupPage()),);
           },
-          child: Center(
+          child: const Center(
             child: Text(
               'Don\'t have an account? Sign up',
               style: TextStyle(

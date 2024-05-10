@@ -12,6 +12,8 @@ class RecommenderPage extends StatelessWidget {
 
   final List<int> percentages = [95, 80, 70, 85];
 
+   RecommenderPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,18 +28,18 @@ class RecommenderPage extends StatelessWidget {
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(height: 20),
-          Padding(
+          const SizedBox(height: 20),
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Center(
               child: Text(
@@ -46,7 +48,7 @@ class RecommenderPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
               itemCount: jobTitles.length,
@@ -57,19 +59,19 @@ class RecommenderPage extends StatelessWidget {
           ),
         ],
       ),
-            bottomNavigationBar: Footer(),
+            bottomNavigationBar: const Footer(),
 
     );
   }
 
   Widget buildSection(String jobTitle, int percentage) {
     return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -80,19 +82,19 @@ class RecommenderPage extends StatelessWidget {
         children: [
           Text(
             "$percentage%",
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             jobTitle,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            style: const TextStyle(fontSize: 20, color: Colors.white),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           GestureDetector(
             onTap: () {
               // Navigate to the job details page
             },
-            child: Text(
+            child: const Text(
               "Read more about the job",
               style: TextStyle(
                 color: Colors.black,

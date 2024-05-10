@@ -6,28 +6,24 @@ import 'package:graduationinterface/applicationTier/services/CustomImagePicker.d
 import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 
-
 class CreatingAccPage extends StatefulWidget {
   @override
   _CreatingAccPageState createState() => _CreatingAccPageState();
 }
-class _CreatingAccPageState extends State<CreatingAccPage>
-{
 
+class _CreatingAccPageState extends State<CreatingAccPage> {
   FirestoreMethods _firestoreMethods = FirestoreMethods();
-  CustomImagePicker _customImagePicker = CustomImagePicker(); 
-    Uint8List? _image;
+  CustomImagePicker _customImagePicker = CustomImagePicker();
+  Uint8List? _image;
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
-  final TextEditingController selectedEducationalLevel = TextEditingController();
+  final TextEditingController selectedEducationalLevel =
+      TextEditingController();
   final TextEditingController selectedJobStatus = TextEditingController();
-  final TextEditingController selectedFieldOfInterests = TextEditingController();
+  final TextEditingController selectedFieldOfInterests =
+      TextEditingController();
 
-
-  
- 
-
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -42,7 +38,7 @@ class _CreatingAccPageState extends State<CreatingAccPage>
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/assets/signn.png'),
             fit: BoxFit.cover,
@@ -63,20 +59,19 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.black, width: 0.5),
-                          image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage('images/assets/8.png'),
                           fit: BoxFit.cover,
                         ),
-                      
-                ),
-              ),
-                Positioned(
+                      ),
+                    ),
+                    Positioned(
                       bottom: 0,
                       right: 0,
                       child: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.blue,
                         ),
@@ -86,34 +81,34 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                               child: ListTile(
                                 leading: Icon(Icons.camera_alt),
                                 title: Text('Camera'),
-                                onTap: ()  async {
-                                Uint8List? image = await _customImagePicker.pickImage(ImageSource.camera);
-                            
-                                if (image != null) {
-                                      setState(() {
+                                onTap: () async {
+                                  Uint8List? image = await _customImagePicker
+                                      .pickImage(ImageSource.camera);
+
+                                  if (image != null) {
+                                    setState(() {
                                       _image = image;
                                     });
-                                        }
-                                      },
-                                    ),
-                                  ),
+                                  }
+                                },
+                              ),
+                            ),
                             PopupMenuItem(
                               child: ListTile(
                                 leading: Icon(Icons.photo_library),
                                 title: Text('Gallery'),
-                                onTap: ()  async{
-                                Uint8List? image = await   _customImagePicker.pickImage(ImageSource.gallery); 
-                                {
-                                  setState(() {
-                                    _image = image;
-                                  });
-                                }
-                              
+                                onTap: () async {
+                                  Uint8List? image = await _customImagePicker
+                                      .pickImage(ImageSource.gallery);
+                                  {
+                                    setState(() {
+                                      _image = image;
+                                    });
+                                  }
                                 },
                               ),
                             ),
                           ],
-              
                           icon: Icon(
                             Icons.camera_alt_rounded,
                             color: Colors.white,
@@ -132,49 +127,50 @@ class _CreatingAccPageState extends State<CreatingAccPage>
                 selectedJobStatus: selectedJobStatus,
                 selectedFieldOfInterests: selectedFieldOfInterests,
               ),
-              SizedBox(height: 24.0),
-        ElevatedButton(
-  onPressed: () async {
-    String? res = await _firestoreMethods.saveUserData(
-      phoneNumber: phoneNumberController.text,
-      age: ageController.text,
-      educationalLevel: selectedEducationalLevel.text,
-      jobStatus: selectedJobStatus.text,
-      fieldOfInterests: selectedFieldOfInterests.text,
-    );
-    if (res == null) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionsPage()));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error creating account: $res'),
-          duration: Duration(seconds: 2),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: Color(0xFF3B52BB), // Background color
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
-    ),
-  ),
-  child: Padding(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-    child: Text(
-      'Create Account',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  ),
-),
-
-              
-            ], 
+              const SizedBox(height: 24.0),
+              ElevatedButton(
+                onPressed: () async {
+                  String? res = await _firestoreMethods.saveUserData(
+                    phoneNumber: phoneNumberController.text,
+                    age: ageController.text,
+                    educationalLevel: selectedEducationalLevel.text,
+                    jobStatus: selectedJobStatus.text,
+                    fieldOfInterests: selectedFieldOfInterests.text,
+                  );
+                  if (res == null) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => QuestionsPage()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error creating account: $res'),
+                        duration: Duration(seconds: 2),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF3B52BB), // Background color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Text(
+                    'Create Account',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

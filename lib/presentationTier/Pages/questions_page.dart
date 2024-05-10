@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/Optional.dart';
 import 'package:graduationinterface/presentationTier/Widgets/Qbody.dart';
-import 'package:graduationinterface/presentationTier/Pages/Optional.dart';
 
 class QuestionsPage extends StatefulWidget {
+  const QuestionsPage({super.key});
+
   @override
   _QuestionsPageState createState() => _QuestionsPageState();
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
- int _questionIndex = 0;
-  List<String> _questions = [
+  int _questionIndex = 0;
+  final List<String> _questions = [
     'Are you satisfied with your current job?',
     'Would you consider yourself proficient in web development?',
     'Do you have experience in data analysis?',
     'Are you comfortable with digital marketing?',
   ];
-  List<List<String>> _options = [
+  final List<List<String>> _options = [
     ['Yes', 'No'],
     ['Yes', 'No'],
     ['Yes', 'No'],
@@ -28,7 +29,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
       if (_questionIndex < _questions.length - 1) {
         _questionIndex++;
       } else {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => OptionalPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => OptionalPage()));
       }
     });
   }

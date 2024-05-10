@@ -7,6 +7,8 @@ import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 
 class SkillsPage extends StatefulWidget {
+  const SkillsPage({super.key});
+
   @override
   _SkillsPageState createState() => _SkillsPageState();
 }
@@ -14,7 +16,7 @@ class SkillsPage extends StatefulWidget {
 class _SkillsPageState extends State<SkillsPage> {
   final TextEditingController _textFieldController = TextEditingController();
   List<String> typedSkills = [];
-  FirestoreMethods _firestoreMethods = FirestoreMethods();
+  final FirestoreMethods _firestoreMethods = FirestoreMethods();
 
   @override
   void dispose() {
@@ -26,7 +28,7 @@ class _SkillsPageState extends State<SkillsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -37,17 +39,17 @@ class _SkillsPageState extends State<SkillsPage> {
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/assets/ew3a.png'),
                 fit: BoxFit.cover,
@@ -56,26 +58,26 @@ class _SkillsPageState extends State<SkillsPage> {
           ),
           SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Align(
+                  const Align(
                     alignment: Alignment.center,
                     child: Text(
                       'Your Skills',
                       style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Align(
+                  const SizedBox(height: 10),
+                  const Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       'Typed Skills',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Wrap(
                     children: typedSkills
                         .map(
@@ -90,7 +92,7 @@ class _SkillsPageState extends State<SkillsPage> {
                         )
                         .toList(),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(
@@ -101,7 +103,7 @@ class _SkillsPageState extends State<SkillsPage> {
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0)),
                             filled: true,
                             fillColor: const Color.fromARGB(255, 255, 255, 255),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
                           ),
                         ),
                       ),
@@ -113,9 +115,9 @@ class _SkillsPageState extends State<SkillsPage> {
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             gradient: LinearGradient(
                               colors: [Colors.blueAccent, Color.fromARGB(255, 201, 112, 217)],
@@ -123,22 +125,22 @@ class _SkillsPageState extends State<SkillsPage> {
                               end: Alignment.bottomRight,
                             ),
                           ),
-                          child: Icon(Icons.check, color: Colors.white),
+                          child: const Icon(Icons.check, color: Colors.white),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Align(
                     alignment: Alignment.topCenter,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Suggestions',
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
                             Expanded(
@@ -151,7 +153,7 @@ class _SkillsPageState extends State<SkillsPage> {
                                 },
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Expanded(
                               child: SuggestedSkillOval(
                                 skillName: 'Microsoft',
@@ -167,21 +169,21 @@ class _SkillsPageState extends State<SkillsPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       showChangesSavedDialog(context);
                       _firestoreMethods.saveSkillToFirestore(typedSkills);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF3B52BB),
+                      backgroundColor: const Color(0xFF3B52BB),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                     ),
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Center(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: const Center(
                         child: Text(
                           'Save',
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
@@ -195,7 +197,7 @@ class _SkillsPageState extends State<SkillsPage> {
           ),
         ],
       ),
-      bottomNavigationBar: Footer(),
+      bottomNavigationBar: const Footer(),
     );
   }
 }

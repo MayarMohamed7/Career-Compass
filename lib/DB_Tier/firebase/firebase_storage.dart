@@ -2,12 +2,12 @@ import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:graduationinterface/DB_Tier/firebase/firebase_options.dart';
+import 'package:http/http.dart' as http;
 
 class StorageMethods {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  
   Future<String> uploadImageToStorage(String childName, Uint8List image) async {
     try {
       Reference ref = _storage.ref().child(childName).child(_auth.currentUser!.uid);
@@ -21,14 +21,15 @@ class StorageMethods {
     }
   }
 
-  Future<String?> getProfileImageUrl(String userId) async {
-    try {
-      Reference ref = _storage.ref().child('profile_images').child('$userId.jpg');
-      String downloadURL = await ref.getDownloadURL();
-      return downloadURL;
-    } catch (e) {
-      print('Error retrieving profile image URL from storage: $e');
-      return null;
-    }
+Future<String?> getImageUrlFromStorage(String path) async {
+  try {
+    Reference ref = _storage.ref().child(path).child(_auth.currentUser!.uid);
+    String? url = await ref.getDownloadURL();
+    return url;
+  } catch (e) {
+    print('Error retrieving image URL from storage: $e');
+    return null;
   }
 }
+}
+  

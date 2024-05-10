@@ -79,13 +79,13 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -127,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   fieldOfInterests = newInterests;
                 });
               }),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: ()  {
                   showChangesSavedDialog(context);
@@ -138,13 +138,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 40),
-                  backgroundColor: Color.fromARGB(255, 119, 136, 235), // Background color
+                  minimumSize: const Size(100, 40),
+                  backgroundColor: const Color.fromARGB(255, 119, 136, 235), // Background color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Save',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -156,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-      bottomNavigationBar: Footer(),
+      bottomNavigationBar: const Footer(),
     );
   }
 }

@@ -31,3 +31,36 @@ Future<void> updateCred(String userId, Map<String, dynamic> newData) async {
   
 
   
+// Function to fetch user profile data
+
+  /*Future<User?> getCurrentUserProfile() async {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User? currentUser = auth.currentUser;
+  if (currentUser != null) {
+    // Fetch user data from 'users' table
+    DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get();
+    Map<String, dynamic> userData = userSnapshot.data() as Map<String, dynamic>;
+
+    // Fetch user profile data from 'userData' table
+    DocumentSnapshot userProfileSnapshot = await FirebaseFirestore.instance.collection('userData').doc(currentUser.uid).get();
+    Map<String, dynamic> userProfileData = userProfileSnapshot.data() as Map<String, dynamic>;
+
+    // Merge data from both tables into a single User object
+    return User(
+      id: userData['id'],
+      email: userData['email'] ?? '',
+      fullName: userData['fullName'] ?? '',
+      phoneNumber: userProfileData['phoneNumber'],
+      age: userProfileData['age'],
+      educationalLevel: userProfileData['educationalLevel'],
+      jobStatus: userProfileData['jobStatus'],
+      fieldOfInterests: userProfileData['fieldOfInterests'],
+    );
+  }
+  return null;
+}
+
+Future<void> fetchUserProfile(Function(User?) onProfileFetched) async {
+    User? userProfile = await getCurrentUserProfile();
+    onProfileFetched(userProfile);
+  }*/

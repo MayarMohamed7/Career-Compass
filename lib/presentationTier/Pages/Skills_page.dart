@@ -6,6 +6,8 @@ import 'package:graduationinterface/presentationTier/Widgets/suggskillOval.dart'
 import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 
+
+final List<String> allSuggestions = ['c++', 'Team palyer', 'Python', 'Java', 'Flutter', 'HTML', 'CSS', 'JavaScript'];
 class SkillsPage extends StatefulWidget {
   const SkillsPage({super.key});
 
@@ -18,14 +20,29 @@ class _SkillsPageState extends State<SkillsPage> {
   List<String> typedSkills = [];
   final FirestoreMethods _firestoreMethods = FirestoreMethods();
 
+  List<String> randomSuggestions = [];   
+
   @override
   void dispose() {
     _textFieldController.dispose();
     super.dispose();
+  
+  }
+ void initState() {
+    super.initState();
+  
   }
 
+void randomizeSuggestions() {
+    
+    allSuggestions.shuffle();
+    randomSuggestions = allSuggestions.take(2).toList();
+  }
   @override
   Widget build(BuildContext context) {
+    // Randomize suggestions every time the page is loaded
+    randomizeSuggestions();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -78,19 +95,21 @@ class _SkillsPageState extends State<SkillsPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Wrap(
-                    children: typedSkills
-                        .map(
-                          (skill) => SkillOval(
-                            skillName: skill,
-                            onDelete: () {
-                              setState(() {
-                                typedSkills.remove(skill);
-                              });
-                            },
-                          ),
-                        )
-                        .toList(),
+
+                  Row(
+                    children: typedSkills.map((skill) {
+                      return Expanded(
+                        child: SkillOval(
+                          skillName: skill,
+                          onDelete: () {
+                            setState(() {
+                              typedSkills.remove(skill);
+                            });
+                          },
+                        ),
+                      );
+                    }).toList(),
+
                   ),
                   const SizedBox(height: 20),
                   Row(
@@ -142,29 +161,20 @@ class _SkillsPageState extends State<SkillsPage> {
                         ),
                         const SizedBox(height: 10),
                         Row(
-                          children: <Widget>[
-                            Expanded(
+                          children: randomSuggestions.map((skill) {
+                            return Expanded(
                               child: SuggestedSkillOval(
-                                skillName: 'Wordpress',
+                                skillName: skill,
                                 onAdd: () {
                                   setState(() {
-                                    typedSkills.add('Wordpress');
+                                    typedSkills.add(skill);
                                   });
                                 },
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: SuggestedSkillOval(
-                                skillName: 'Microsoft',
-                                onAdd: () {
-                                  setState(() {
-                                    typedSkills.add('Microsoft');
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
+
+                            );
+                          }).toList(),
+
                         ),
                       ],
                     ),

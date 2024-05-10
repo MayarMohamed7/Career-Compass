@@ -1,79 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:graduationinterface/presentationTier/Pages/profile_content.dart';
 import 'package:graduationinterface/presentationTier/Widgets/profile_item.dart';
+import 'package:graduationinterface/applicationTier/services/profile_service.dart';
 import 'package:graduationinterface/presentationTier/Widgets/drawer.dart';
 import 'package:graduationinterface/presentationTier/Widgets/footer.dart';
 import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:graduationinterface/presentationTier/utils/dialogtemp.dart';
+
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+
+  const ProfilePage({Key? key}) : super(key: key);
+
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String fullname = '';
-  String email = '';
-  String phoneNumber = '';
-  String age = '';
-  String educationalLevel = '';
-  String jobStatus = '';
-  String fieldOfInterests = '';
-  User? user ; 
-  var userData={};   
-  var Cred={}; 
-  
-/// These Dart functions use Firebase Firestore to retrieve user data and update the state accordingly.
-getCred() async {
-  
-var  snap  =await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
-Cred = snap.data()!; 
-setState(() {
-  email=Cred['email']; 
-  fullname=Cred['fullname'];
-});
-    }
-    getData() async {
-  
-var  snap  =await FirebaseFirestore.instance.collection('userData').doc(user!.uid).get();
-userData = snap.data()!; 
-setState(() {
-  age = userData['age'];
-  phoneNumber = userData['phoneNumber'];
-  educationalLevel = userData['educationalLevel'];
-  jobStatus = userData['jobStatus'];
-  fieldOfInterests = userData['fieldOfInterests'];
+  final ProfileService _profileService = ProfileService();
 
-});
-
-    }
+  String fullname='';
+  String email='';
+  String phoneNumber='';
+  String age='';
+  String educationalLevel='';
+  String jobStatus='';
+  String fieldOfInterests='';
 
   @override
   void initState() {
     super.initState();
-  user = FirebaseAuth.instance.currentUser; 
-  getData();
-  getCred();
+    getUserData();
   }
 
-void saveData() async {
-  await FirebaseFirestore.instance.collection('users').doc(user!.uid).update({
-    'email': email,
-    'fullname': fullname,
-  });
+  Future<void> getUserData() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final userData = await _profileService.getUserData(user!.uid);
+    final credData = await _profileService.getCred(user.uid);
+    setState(() {
+      fullname = credData['fullname'] ?? '';
+      email = credData['email'] ?? '';
+      phoneNumber = userData['phoneNumber'] ?? '';
+      age = userData['age'] ?? '';
+      educationalLevel = userData['educationalLevel'] ?? '';
+      jobStatus = userData['jobStatus'] ?? '';
+      fieldOfInterests = userData['fieldOfInterests'] ?? '';
+    });
+  }
 
-  await FirebaseFirestore.instance.collection('userData').doc(user!.uid).update({
-    'age': age,
-    'phoneNumber': phoneNumber,
-    'educationalLevel': educationalLevel,
-    'jobStatus': jobStatus,
-    'fieldOfInterests': fieldOfInterests,
-  });
-}
-  
+  Future<void> saveData() async {
+    final user = FirebaseAuth.instance.currentUser;
+    await _profileService.updateUserData(user!.uid, {
+      'phoneNumber': phoneNumber,
+      'age': age,
+      'educationalLevel': educationalLevel,
+      'jobStatus': jobStatus,
+      'fieldOfInterests': fieldOfInterests,
+    });
+  }
+
+  Future<void> saveCred() async 
+  {
+    final user = FirebaseAuth.instance.currentUser;
+    await _profileService.updateCred(user!.uid, {
+      'fullname': fullname,
+      'email': email,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,10 +131,13 @@ void saveData() async {
               }),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: ()  {
                   showChangesSavedDialog(context);
                   saveData();
+                  saveCred();
+              
                   setState(() {});
+
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(100, 40),

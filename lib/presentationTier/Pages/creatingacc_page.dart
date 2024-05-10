@@ -4,6 +4,8 @@ import 'package:graduationinterface/presentationTier/Forms/creatingacc_form.dart
 import 'package:graduationinterface/DB_Tier/firebase/firebase_firestore.dart';
 import 'package:graduationinterface/applicationTier/services/CustomImagePicker.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:graduationinterface/DB_Tier/firebase/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:typed_data';
 
 class CreatingAccPage extends StatefulWidget {
@@ -15,6 +17,10 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
   FirestoreMethods _firestoreMethods = FirestoreMethods();
   CustomImagePicker _customImagePicker = CustomImagePicker();
   Uint8List? _image;
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  StorageMethods _storageMethods = StorageMethods();
+
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController selectedEducationalLevel =
@@ -22,6 +28,8 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
   final TextEditingController selectedJobStatus = TextEditingController();
   final TextEditingController selectedFieldOfInterests =
       TextEditingController();
+
+  @override
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,10 +67,17 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.black, width: 0.5),
-                        image: const DecorationImage(
-                          image: AssetImage('images/assets/8.png'),
-                          fit: BoxFit.cover,
-                        ),
+                        /// This part of the code is setting the image for the container based on the
+                        /// `_image` variable.
+                        image: _image == null
+                            ? const DecorationImage(
+                                image: AssetImage('images/assets/8.png'),
+                                fit: BoxFit.cover,
+                              )
+                            : DecorationImage(
+                                image: MemoryImage(_image!),
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     Positioned(
@@ -79,12 +94,13 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               child: ListTile(
-                                leading: Icon(Icons.camera_alt),
-                                title: Text('Camera'),
-                                onTap: () async {
-                                  Uint8List? image = await _customImagePicker
-                                      .pickImage(ImageSource.camera);
 
+                                leading: const Icon(Icons.camera_alt),
+                                title: const Text('Camera'),
+                                onTap: () async {
+                                  Uint8List? image =
+                                      await _customImagePicker.pickImage(
+                                          ImageSource.camera);
                                   if (image != null) {
                                     setState(() {
                                       _image = image;
@@ -95,12 +111,13 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                             ),
                             PopupMenuItem(
                               child: ListTile(
-                                leading: Icon(Icons.photo_library),
-                                title: Text('Gallery'),
+                                leading: const Icon(Icons.photo_library),
+                                title: const Text('Gallery'),
                                 onTap: () async {
-                                  Uint8List? image = await _customImagePicker
-                                      .pickImage(ImageSource.gallery);
-                                  {
+                                  Uint8List? image =
+                                      await _customImagePicker.pickImage(
+                                          ImageSource.gallery);
+                                  if (image != null) {
                                     setState(() {
                                       _image = image;
                                     });
@@ -109,7 +126,9 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                               ),
                             ),
                           ],
-                          icon: Icon(
+
+                          icon: const Icon(
+
                             Icons.camera_alt_rounded,
                             color: Colors.white,
                           ),
@@ -119,7 +138,7 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               SignupFormField(
                 phoneNumberController: phoneNumberController,
                 ageController: ageController,
@@ -130,6 +149,16 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () async {
+
+                    if (_image != null) {
+      // Upload image to Firebase Storage
+      String imageURL = await _storageMethods.uploadImageToStorage(
+        'profile_images/${_auth.currentUser!.email}.jpg', // Firebase Storage path with user ID as filename
+        _image!,
+      );
+                    }
+
+
                   String? res = await _firestoreMethods.saveUserData(
                     phoneNumber: phoneNumberController.text,
                     age: ageController.text,
@@ -146,6 +175,7 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Error creating account: $res'),
+
                         duration: Duration(seconds: 2),
                         backgroundColor: Colors.red,
                       ),
@@ -153,7 +183,8 @@ class _CreatingAccPageState extends State<CreatingAccPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3B52BB), // Background color
+
+                  backgroundColor: const Color(0xFF3B52BB),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
